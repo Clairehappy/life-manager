@@ -1981,20 +1981,20 @@ window.AccountingComponent = {
      </div>
 
      <!-- Filters -->
-     <div class="filter-bar">
-       <div class="month-picker">
+     <div class="filter-bar" style="flex-wrap:nowrap;gap:6px">
+       <div class="month-picker" style="flex:0 0 auto">
          <button class="btn-ghost btn-icon" @click="prevMonth">‹</button>
          <span class="month-picker-label">{{ displayMonth }}</span>
          <button class="btn-ghost btn-icon" @click="nextMonth">›</button>
        </div>
-       <select v-model="filterCategory" class="form-select" style="width:auto;min-width:120px">
-         <option value="">全部分类</option>
-         <option v-for="cat in allCategories" :key="cat.name" :value="cat.name">{{ cat.icon }} {{ cat.name }}</option>
-       </select>
-       <select v-model="filterType" class="form-select" style="width:auto;min-width:100px">
+       <select v-model="filterType" class="form-select" style="flex:1;min-width:0">
          <option value="">全部</option>
          <option value="income">收入</option>
          <option value="expense">支出</option>
+       </select>
+       <select v-model="filterCategory" class="form-select" style="flex:1;min-width:0">
+         <option value="">全部分类</option>
+         <option v-for="cat in allCategories" :key="cat.name" :value="cat.name">{{ cat.icon }} {{ cat.name }}</option>
        </select>
      </div>
 
@@ -3177,14 +3177,24 @@ window.DietComponent = {
        </button>
      </div>
 
-     <!-- Weekday tabs -->
+     <!-- Weekday tabs - Row 1: Mon-Fri -->
      <div class="fitness-day-tabs">
-       <button v-for="(dow, idx) in dayOrder" :key="idx"
+       <button v-for="(dow, idx) in weekdayRow" :key="'w'+idx"
          class="fitness-day-tab"
          :class="{ active: selectedDay === dow, 'today-tab': dow === todayDay }"
          @click="selectDayTab(dow)">
-         {{ Utils.getDayName(dow) }}
-         <span v-if="dow === todayDay" style="font-size:10px">·今天</span>
+         <span style="font-size:13px;font-weight:600">{{ Utils.getDayName(dow) }}</span>
+         <span v-if="dow === todayDay" style="font-size:9px">·今天</span>
+       </button>
+     </div>
+     <!-- Weekday tabs - Row 2: Sat-Sun -->
+     <div class="fitness-day-tabs" style="margin-top:4px">
+       <button v-for="(dow, idx) in weekendRow" :key="'e'+idx"
+         class="fitness-day-tab"
+         :class="{ active: selectedDay === dow, 'today-tab': dow === todayDay }"
+         @click="selectDayTab(dow)">
+         <span style="font-size:13px;font-weight:600">{{ Utils.getDayName(dow) }}</span>
+         <span v-if="dow === todayDay" style="font-size:9px">·今天</span>
        </button>
      </div>
 
@@ -3288,6 +3298,8 @@ window.DietComponent = {
    const form = ref({ name: '', mealType: 'breakfast', portion: '', calories: '' });
 
    const dayOrder = [1, 2, 3, 4, 5, 6, 0];
+   const weekdayRow = [1, 2, 3, 4, 5];
+   const weekendRow = [6, 0];
 
    function getDateForDayOfWeek(dow) {
      const today = new Date();
@@ -3628,7 +3640,7 @@ window.DietComponent = {
 
    return {
      Utils, todayDay, selectedDay, selectedDate, showModal, editing, form,
-     dayOrder, mealTypes, allFoods, totalCalories, dateLabel,
+     dayOrder, weekdayRow, weekendRow, mealTypes, allFoods, totalCalories, dateLabel,
      mealFoods, mealCalories, selectDayTab, goToday,
      openAddFood, openEditFood, closeModal, saveFood, deleteFood, generateWeeklyPlan, autoRotate,
    };
