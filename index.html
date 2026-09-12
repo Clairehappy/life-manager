@@ -4,10 +4,12 @@
 <head>
  <meta charset="UTF-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
- <meta name="theme-color" content="#6366f1" />
  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
  <meta http-equiv="Pragma" content="no-cache" />
  <title>为成为快乐富婆而努力奋斗</title>
+ <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='14' fill='%237c5cc7'/%3E%3Cg transform='translate(32 32)'%3E%3Cellipse cx='0' cy='-12' rx='7' ry='10' fill='%23ff8fb1'/%3E%3Cellipse cx='11.4' cy='-3.7' rx='7' ry='10' transform='rotate(72 11.4 -3.7)' fill='%23ff8fb1'/%3E%3Cellipse cx='7' cy='9.7' rx='7' ry='10' transform='rotate(144 7 9.7)' fill='%23ff8fb1'/%3E%3Cellipse cx='-7' cy='9.7' rx='7' ry='10' transform='rotate(216 -7 9.7)' fill='%23ff8fb1'/%3E%3Cellipse cx='-11.4' cy='-3.7' rx='7' ry='10' transform='rotate(288 -11.4 -3.7)' fill='%23ff8fb1'/%3E%3Ccircle cx='0' cy='0' r='5' fill='%23fff'/%3E%3Ccircle cx='-2' cy='-1' r='1' fill='%23ffd1dc'/%3E%3Ccircle cx='2' cy='-1' r='1' fill='%23ffd1dc'/%3E%3Ccircle cx='0' cy='2' r='1' fill='%23ffd1dc'/%3E%3C/g%3E%3C/svg%3E" />
+ <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='14' fill='%237c5cc7'/%3E%3Cg transform='translate(32 32)'%3E%3Cellipse cx='0' cy='-12' rx='7' ry='10' fill='%23ff8fb1'/%3E%3Cellipse cx='11.4' cy='-3.7' rx='7' ry='10' transform='rotate(72 11.4 -3.7)' fill='%23ff8fb1'/%3E%3Cellipse cx='7' cy='9.7' rx='7' ry='10' transform='rotate(144 7 9.7)' fill='%23ff8fb1'/%3E%3Cellipse cx='-7' cy='9.7' rx='7' ry='10' transform='rotate(216 -7 9.7)' fill='%23ff8fb1'/%3E%3Cellipse cx='-11.4' cy='-3.7' rx='7' ry='10' transform='rotate(288 -11.4 -3.7)' fill='%23ff8fb1'/%3E%3Ccircle cx='0' cy='0' r='5' fill='%23fff'/%3E%3Ccircle cx='-2' cy='-1' r='1' fill='%23ffd1dc'/%3E%3Ccircle cx='2' cy='-1' r='1' fill='%23ffd1dc'/%3E%3Ccircle cx='0' cy='2' r='1' fill='%23ffd1dc'/%3E%3C/g%3E%3C/svg%3E" />
+ <meta name="theme-color" content="#7c5cc7" />
  <style>
 /* ===== Reset & Base ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -2837,25 +2839,25 @@ window.FitnessComponent = {
      </div>
 
      <!-- Day tabs - Row 1: Mon-Fri -->
-     <div class="fitness-day-tabs">
+     <div class="fitness-day-tabs" style="flex-wrap:nowrap">
        <button v-for="(dow, idx) in weekdayRow" :key="'w'+idx"
          class="fitness-day-tab"
+         style="flex:1;padding:6px 4px;font-size:12px;min-width:0"
          :class="{ active: selectedDay === dow, 'today-tab': dow === todayDay }"
          @click="selectedDay = dow">
-         <span style="font-size:14px;font-weight:600">{{ Utils.getDayName(dow) }}</span>
-         <span v-if="dow === todayDay" style="font-size:10px">·今天</span>
-         <span class="tab-theme" style="font-size:10px;color:var(--color-text-secondary);display:block;margin-top:2px">{{ dayThemes[dow] }}</span>
+         <div style="font-size:12px;font-weight:600">{{ Utils.getDayName(dow) }}</div>
+         <div v-if="dow === todayDay" style="font-size:9px;color:inherit">·今天</div>
        </button>
      </div>
      <!-- Day tabs - Row 2: Sat-Sun -->
-     <div class="fitness-day-tabs" style="margin-top:4px">
+     <div class="fitness-day-tabs" style="margin-top:4px;flex-wrap:nowrap">
        <button v-for="(dow, idx) in weekendRow" :key="'e'+idx"
          class="fitness-day-tab"
+         style="flex:0 0 28%;padding:8px 12px;font-size:12px;max-width:100px"
          :class="{ active: selectedDay === dow, 'today-tab': dow === todayDay }"
          @click="selectedDay = dow">
-         <span style="font-size:14px;font-weight:600">{{ Utils.getDayName(dow) }}</span>
-         <span v-if="dow === todayDay" style="font-size:10px">·今天</span>
-         <span class="tab-theme" style="font-size:10px;color:var(--color-text-secondary);display:block;margin-top:2px">{{ dayThemes[dow] }}</span>
+         <div style="font-size:12px;font-weight:600">{{ Utils.getDayName(dow) }}</div>
+         <div v-if="dow === todayDay" style="font-size:9px;color:inherit">·今天</div>
        </button>
      </div>
 
@@ -3178,23 +3180,25 @@ window.DietComponent = {
      </div>
 
      <!-- Weekday tabs - Row 1: Mon-Fri -->
-     <div class="fitness-day-tabs">
+     <div class="fitness-day-tabs" style="flex-wrap:nowrap">
        <button v-for="(dow, idx) in weekdayRow" :key="'w'+idx"
          class="fitness-day-tab"
+         style="flex:1;padding:6px 4px;font-size:12px;min-width:0"
          :class="{ active: selectedDay === dow, 'today-tab': dow === todayDay }"
          @click="selectDayTab(dow)">
-         <span style="font-size:13px;font-weight:600">{{ Utils.getDayName(dow) }}</span>
-         <span v-if="dow === todayDay" style="font-size:9px">·今天</span>
+         <div style="font-size:12px;font-weight:600">{{ Utils.getDayName(dow) }}</div>
+         <div v-if="dow === todayDay" style="font-size:9px;color:inherit">·今天</div>
        </button>
      </div>
      <!-- Weekday tabs - Row 2: Sat-Sun -->
-     <div class="fitness-day-tabs" style="margin-top:4px">
+     <div class="fitness-day-tabs" style="margin-top:4px;flex-wrap:nowrap">
        <button v-for="(dow, idx) in weekendRow" :key="'e'+idx"
          class="fitness-day-tab"
+         style="flex:0 0 28%;padding:8px 12px;font-size:12px;max-width:100px"
          :class="{ active: selectedDay === dow, 'today-tab': dow === todayDay }"
          @click="selectDayTab(dow)">
-         <span style="font-size:13px;font-weight:600">{{ Utils.getDayName(dow) }}</span>
-         <span v-if="dow === todayDay" style="font-size:9px">·今天</span>
+         <div style="font-size:12px;font-weight:600">{{ Utils.getDayName(dow) }}</div>
+         <div v-if="dow === todayDay" style="font-size:9px;color:inherit">·今天</div>
        </button>
      </div>
 
