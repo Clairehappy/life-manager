@@ -1984,17 +1984,17 @@ window.AccountingComponent = {
 
      <!-- Filters -->
      <div class="filter-bar" style="flex-wrap:nowrap;gap:6px">
-       <div class="month-picker" style="flex:0 0 auto">
+       <div class="month-picker" style="flex:1;min-width:0;justify-content:center">
          <button class="btn-ghost btn-icon" @click="prevMonth">‹</button>
-         <span class="month-picker-label">{{ displayMonth }}</span>
+         <span class="month-picker-label" style="font-size:13px">{{ displayMonth }}</span>
          <button class="btn-ghost btn-icon" @click="nextMonth">›</button>
        </div>
-       <select v-model="filterType" class="form-select" style="flex:1;min-width:0">
+       <select v-model="filterType" class="form-select" style="flex:1;min-width:0;font-size:13px">
          <option value="">全部</option>
          <option value="income">收入</option>
          <option value="expense">支出</option>
        </select>
-       <select v-model="filterCategory" class="form-select" style="flex:1;min-width:0">
+       <select v-model="filterCategory" class="form-select" style="flex:1;min-width:0;font-size:13px">
          <option value="">全部分类</option>
          <option v-for="cat in allCategories" :key="cat.name" :value="cat.name">{{ cat.icon }} {{ cat.name }}</option>
        </select>
