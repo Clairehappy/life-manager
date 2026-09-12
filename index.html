@@ -1,0 +1,4126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#6366f1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <title>为成为快乐富婆而努力奋斗</title>
+  <style>
+    /* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  transition: background 0.3s, color 0.3s;
+}
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: inherit; font-size: inherit; }
+ul { list-style: none; }
+a { color: inherit; text-decoration: none; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ===== CSS Variables — Light Theme ===== */
+:root {
+  --color-primary: #7c5cc7;
+  --color-primary-hover: #6d4bb5;
+  --color-primary-light: #f0e9fb;
+  --color-primary-text: #ffffff;
+  --color-bg: #f5f3ef;
+  --color-surface: #ffffff;
+  --color-surface-alt: #faf8f5;
+  --color-surface-hover: #f0ede8;
+  --color-text: #1e293b;
+  --color-text-secondary: #64748b;
+  --color-text-muted: #94a3b8;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-success: #22c55e;
+  --color-success-light: #dcfce7;
+  --color-danger: #ef4444;
+  --color-danger-light: #fee2e2;
+  --color-warning: #f59e0b;
+  --color-warning-light: #fef3c7;
+  --color-income: #16a34a;
+  --color-expense: #dc2626;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow: 0 1px 3px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.06);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,.08), 0 4px 6px rgba(0,0,0,.05);
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --nav-w: 220px;
+  --nav-h: 60px;
+  --font-xs: 12px;
+  --font-sm: 14px;
+  --font-base: 16px;
+  --font-lg: 18px;
+  --font-xl: 20px;
+  --font-2xl: 24px;
+  --font-3xl: 30px;
+}
+
+/* ===== Dark Theme ===== */
+[data-theme="dark"] {
+  --color-primary: #a78bda;
+  --color-primary-hover: #7c5cc7;
+  --color-primary-light: #3d2b5c;
+  --color-primary-text: #ffffff;
+  --color-bg: #2a2723;
+  --color-surface: #353230;
+  --color-surface-alt: #353230;
+  --color-surface-hover: #403d3a;
+  --color-text: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-border: #423e3a;
+  --color-border-strong: #54504c;
+  --color-success: #4ade80;
+  --color-success-light: #14532d;
+  --color-danger: #f87171;
+  --color-danger-light: #7f1d1d;
+  --color-warning: #fbbf24;
+  --color-warning-light: #78350f;
+  --color-income: #4ade80;
+  --color-expense: #f87171;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.3);
+  --shadow: 0 1px 3px rgba(0,0,0,.4), 0 1px 2px rgba(0,0,0,.3);
+  --shadow-md: 0 4px 6px rgba(0,0,0,.4), 0 2px 4px rgba(0,0,0,.3);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,.4), 0 4px 6px rgba(0,0,0,.3);
+}
+
+/* ===== App Layout ===== */
+#app { min-height: 100vh; }
+
+.app-shell { display: flex; min-height: 100vh; }
+
+/* Sidebar — Desktop */
+.sidebar {
+  width: var(--nav-w);
+  background: var(--color-primary-light);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg) 0;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 100;
+  transition: transform 0.3s;
+}
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 var(--space-lg);
+  margin-bottom: var(--space-xl);
+  font-size: var(--font-md);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.sidebar-logo span { line-height: 1.3; }
+.sidebar-logo .logo-icon {
+  width: 36px; height: 36px;
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 0 var(--space-sm); }
+.nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px var(--space-md);
+  border-radius: var(--radius);
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+  font-weight: 500;
+  transition: all 0.15s;
+  text-align: left;
+  width: 100%;
+}
+.nav-item:hover { background: var(--color-surface-hover); color: var(--color-text); }
+.nav-item.active { background: var(--color-primary-light); color: var(--color-primary); font-weight: 600; }
+.nav-item .nav-icon { font-size: 18px; width: 20px; text-align: center; }
+.sidebar-footer {
+  padding: var(--space-md);
+  border-top: 1px solid var(--color-border);
+  margin-top: auto;
+}
+.sync-status {
+  display: flex; align-items: center; gap: 8px;
+  font-size: var(--font-xs);
+  color: var(--color-text-muted);
+  padding: 0 var(--space-sm);
+}
+.sync-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--color-text-muted);
+}
+.sync-dot.online { background: var(--color-success); }
+.sync-dot.offline { background: var(--color-text-muted); }
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  margin-left: var(--nav-w);
+  padding: var(--space-lg);
+  max-width: 1200px;
+}
+
+/* Bottom Nav — Mobile */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  z-index: 100;
+  padding: 4px 0 env(safe-area-inset-bottom, 0);
+}
+.bottom-nav-items { display: flex; justify-content: space-around; }
+.bottom-nav .nav-item {
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 4px;
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  min-width: 52px;
+}
+.bottom-nav .nav-icon { font-size: 22px; }
+
+/* ===== Page Header ===== */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  gap: var(--space-md);
+}
+.page-title { font-size: var(--font-2xl); font-weight: 700; }
+.page-actions { display: flex; gap: var(--space-sm); }
+
+/* ===== Cards ===== */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+.card-header {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-body { padding: var(--space-lg); }
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 9px 18px;
+  border-radius: var(--radius);
+  font-size: var(--font-sm);
+  font-weight: 500;
+  transition: all 0.15s;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+.btn-primary { background: var(--color-primary); color: var(--color-primary-text); }
+.btn-primary:hover { background: var(--color-primary-hover); }
+.btn-secondary { background: var(--color-surface-hover); color: var(--color-text); border: 1px solid var(--color-border); }
+.btn-secondary:hover { background: var(--color-border); }
+.btn-danger { background: var(--color-danger); color: #fff; }
+.btn-danger:hover { opacity: 0.9; }
+.btn-ghost { color: var(--color-text-secondary); padding: 6px 10px; }
+.btn-ghost:hover { background: var(--color-surface-hover); color: var(--color-text); }
+.btn-icon { padding: 8px; width: 36px; height: 36px; border-radius: var(--radius); }
+.btn-sm { padding: 6px 12px; font-size: var(--font-xs); }
+.btn-lg { padding: 12px 24px; font-size: var(--font-base); }
+.btn-block { width: 100%; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ===== Forms ===== */
+.form-group { margin-bottom: var(--space-md); }
+.form-label {
+  display: block;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 6px;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-sm);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+.form-textarea { resize: vertical; min-height: 70px; }
+.form-row { display: flex; gap: var(--space-md); }
+.form-row > * { flex: 1; }
+.form-hint { font-size: var(--font-xs); color: var(--color-text-muted); margin-top: 4px; }
+
+/* Type toggle (income/expense) */
+.type-toggle { display: flex; gap: 0; border: 1px solid var(--color-border); border-radius: var(--radius); overflow: hidden; }
+.type-toggle button {
+  flex: 1; padding: 10px;
+  font-size: var(--font-sm); font-weight: 500;
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  transition: all 0.15s;
+}
+.type-toggle button.active.expense { background: var(--color-expense); color: #fff; }
+.type-toggle button.active.income { background: var(--color-income); color: #fff; }
+
+/* ===== Modal ===== */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+  padding: var(--space-md);
+  animation: fadeIn 0.15s ease;
+}
+.modal {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  width: 100%; max-width: 500px;
+  max-height: 90vh; overflow-y: auto;
+  animation: slideUp 0.2s ease;
+}
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+.modal-title { font-size: var(--font-lg); font-weight: 600; }
+.modal-body { padding: var(--space-lg); }
+.modal-footer {
+  display: flex; gap: var(--space-sm); justify-content: flex-end;
+  padding: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+.modal-close { font-size: 22px; color: var(--color-text-muted); padding: 4px 8px; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* ===== List Items ===== */
+.list-item {
+  display: flex; align-items: center; gap: var(--space-md);
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  transition: background 0.15s;
+}
+.list-item:last-child { border-bottom: none; }
+.list-item:hover { background: var(--color-surface-hover); }
+.list-item-icon {
+  width: 40px; height: 40px;
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.list-item-content { flex: 1; min-width: 0; }
+.list-item-title { font-size: var(--font-sm); font-weight: 500; }
+.list-item-sub { font-size: var(--font-xs); color: var(--color-text-muted); }
+.list-item-actions { display: flex; gap: 4px; flex-shrink: 0; }
+
+/* ===== Badges & Tags ===== */
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-xs);
+  font-weight: 500;
+}
+.tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-xs);
+  background: var(--color-surface-hover);
+  color: var(--color-text-secondary);
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+  text-align: center;
+  padding: var(--space-xl) var(--space-lg);
+  color: var(--color-text-muted);
+}
+.empty-state .empty-icon { font-size: 48px; margin-bottom: var(--space-md); }
+.empty-state .empty-text { font-size: var(--font-sm); }
+
+/* ===== Stat Cards (Dashboard) ===== */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-lg); }
+.stat-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+.stat-label { font-size: var(--font-xs); color: var(--color-text-muted); margin-bottom: 6px; }
+.stat-value { font-size: var(--font-2xl); font-weight: 700; }
+.stat-value.income { color: var(--color-income); }
+.stat-value.expense { color: var(--color-expense); }
+.stat-value.balance { color: var(--color-primary); }
+
+/* ===== Dashboard Sections ===== */
+.dashboard-section { margin-bottom: var(--space-lg); }
+.dashboard-section-title {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* Quick links grid */
+.quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: var(--space-md); }
+.quick-link {
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-sm);
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.quick-link:hover { border-color: var(--color-primary); box-shadow: var(--shadow); transform: translateY(-2px); }
+.quick-link-icon {
+  width: 48px; height: 48px; border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+.quick-link-label { font-size: var(--font-sm); font-weight: 500; }
+
+/* ===== Calendar ===== */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  background: var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+.calendar-weekday {
+  text-align: center;
+  font-size: var(--font-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  padding: 8px 4px;
+  background: var(--color-surface);
+}
+.calendar-weekday.weekday-weekend { color: var(--color-primary); }
+.calendar-day {
+  min-height: 80px;
+  padding: 6px;
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex; flex-direction: column;
+  position: relative;
+}
+.calendar-day:hover { background: var(--color-surface-hover); }
+.calendar-day.other-month { opacity: 0.4; }
+.calendar-day.today { background: var(--color-primary-light); }
+.calendar-day-num-row { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; flex-wrap: wrap; }
+.calendar-day-num { font-size: var(--font-xs); font-weight: 600; }
+.calendar-day.today .calendar-day-num { color: var(--color-primary); }
+.calendar-day.weekend .calendar-day-num { color: var(--color-primary); }
+.calendar-day.holiday { background: #fce7f3; }
+.calendar-day.holiday .calendar-day-num { color: #db2777; }
+.calendar-day.workday-override { background: #f0e9fb; }
+.calendar-day.workday-override .calendar-day-num { color: #7c5cc7; }
+.holiday-tag {
+  font-size: 9px; font-weight: 600;
+  color: #db2777;
+  background: #fce7f3;
+  padding: 0 4px; border-radius: 3px;
+  white-space: nowrap;
+}
+.work-tag {
+  font-size: 9px; font-weight: 600;
+  color: #7c5cc7;
+  background: #f0e9fb;
+  padding: 0 4px; border-radius: 3px;
+  white-space: nowrap;
+}
+.calendar-event-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  display: inline-block; margin-right: 3px;
+}
+.calendar-event-label {
+  font-size: 10px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  padding: 1px 4px; border-radius: 3px; margin-bottom: 2px;
+}
+
+/* ===== Fitness ===== */
+.fitness-day-tabs { display: flex; gap: 4px; margin-bottom: var(--space-lg); flex-wrap: wrap; }
+.fitness-day-tab {
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  font-size: var(--font-sm); font-weight: 500;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  transition: all 0.15s;
+}
+.fitness-day-tab.active { background: var(--color-primary); color: var(--color-primary-text); border-color: var(--color-primary); }
+.fitness-day-tab.today-tab { border-color: var(--color-primary); }
+
+.exercise-item {
+  display: flex; align-items: center; gap: var(--space-md);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  margin-bottom: var(--space-sm);
+  background: var(--color-surface);
+}
+.exercise-checkbox {
+  width: 24px; height: 24px;
+  border: 2px solid var(--color-border-strong);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0;
+  transition: all 0.15s;
+}
+.exercise-checkbox.checked { background: var(--color-success); border-color: var(--color-success); color: #fff; }
+.exercise-checkbox.checked::after { content: '✓'; font-size: 16px; }
+.exercise-info { flex: 1; }
+.exercise-name { font-size: var(--font-sm); font-weight: 500; }
+.exercise-detail { font-size: var(--font-xs); color: var(--color-text-muted); }
+.exercise-completed .exercise-name { text-decoration: line-through; color: var(--color-text-muted); }
+
+/* ===== Diet ===== */
+.meal-section { margin-bottom: var(--space-lg); }
+.meal-header {
+  display: flex; align-items: center; gap: var(--space-sm);
+  font-size: var(--font-sm); font-weight: 600;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-secondary);
+}
+.meal-icon { font-size: 20px; }
+.food-item {
+  display: flex; align-items: center; gap: var(--space-sm);
+  padding: 8px var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+  background: var(--color-surface);
+}
+.food-name { flex: 1; font-size: var(--font-sm); }
+.food-portion { font-size: var(--font-xs); color: var(--color-text-muted); }
+
+/* ===== Settings ===== */
+.settings-section { margin-bottom: var(--space-xl); }
+.settings-section-title {
+  font-size: var(--font-base); font-weight: 600;
+  margin-bottom: var(--space-md);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+.settings-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.settings-item:last-child { border-bottom: none; }
+.settings-item-label { font-size: var(--font-sm); }
+.settings-item-desc { font-size: var(--font-xs); color: var(--color-text-muted); margin-top: 2px; }
+
+/* Theme toggle switch */
+.switch {
+  position: relative; width: 44px; height: 24px;
+  background: var(--color-border-strong); border-radius: 12px;
+  cursor: pointer; transition: background 0.2s; flex-shrink: 0;
+}
+.switch.on { background: var(--color-primary); }
+.switch::after {
+  content: ''; position: absolute; top: 2px; left: 2px;
+  width: 20px; height: 20px; background: #fff; border-radius: 50%;
+  transition: transform 0.2s;
+}
+.switch.on::after { transform: translateX(20px); }
+
+/* Category color picker */
+.color-options { display: flex; gap: 8px; flex-wrap: wrap; }
+.color-option {
+  width: 28px; height: 28px; border-radius: 50%;
+  cursor: pointer; border: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+.color-option.selected { border-color: var(--color-text); }
+
+/* ===== Filters & Month Picker ===== */
+.filter-bar {
+  display: flex; gap: var(--space-sm); align-items: center; flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
+}
+.month-picker {
+  display: flex; align-items: center; gap: var(--space-sm);
+}
+.month-picker-label { font-size: var(--font-base); font-weight: 600; min-width: 100px; }
+
+/* Summary bar */
+.summary-bar {
+  display: flex; gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+.summary-item { display: flex; flex-direction: column; gap: 2px; }
+.summary-item-label { font-size: var(--font-xs); color: var(--color-text-muted); }
+.summary-item-value { font-size: var(--font-lg); font-weight: 700; }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main-content { margin-left: 0; padding: var(--space-md) var(--space-md) calc(var(--nav-h) + var(--space-md)); }
+  .bottom-nav { display: block; }
+  .page-title { font-size: var(--font-xl); }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .calendar-day { min-height: 55px; padding: 3px; }
+  .calendar-day-num { font-size: 11px; }
+  .calendar-event-label { display: none; }
+  .form-row { flex-direction: column; gap: 0; }
+  .modal { max-width: 100%; }
+  .summary-bar { flex-direction: column; gap: var(--space-sm); }
+  .quick-links { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 380px) {
+  .stat-grid { grid-template-columns: 1fr; }
+  .quick-links { grid-template-columns: repeat(2, 1fr); }
+  .bottom-nav .nav-item { font-size: 9px; min-width: 44px; }
+}
+
+/* Utility classes */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-muted { color: var(--color-text-muted); }
+.text-sm { font-size: var(--font-sm); }
+.text-xs { font-size: var(--font-xs); }
+.font-bold { font-weight: 700; }
+.flex { display: flex; }
+.flex-1 { flex: 1; }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.hidden { display: none; }
+.w-full { width: 100%; }
+
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  </style>
+  <!-- Vue 3 -->
+  <script src="https://unpkg.com/vue@3.4.38/dist/vue.global.js"></script>
+  <!-- Tesseract.js (OCR, browser-side) -->
+  <script src="https://unpkg.com/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+  <!-- Firebase (cloud sync, optional) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- All JS inlined in order -->
+  <script>
+    /**
+ * Firebase 配置文件
+ *
+ * 使用前请将下面的占位符替换为你自己的 Firebase 项目配置。
+ * 获取方式：
+ *   1. 打开 https://console.firebase.google.com/
+ *   2. 创建新项目（免费额度足够个人使用）
+ *   3. 项目设置 → 常规 → 我的应用 → 添加 Web 应用（图标 </>
+ *   4. 复制 firebaseConfig 内容粘贴到下方
+ *   5. 在 Firestore Database 页面点击"创建数据库"，选"测试模式"
+ *
+ * 不配置也能用——数据会保存在浏览器本地（IndexedDB），只是无法跨设备同步。
+ */
+
+const FIREBASE_CONFIG = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+function isFirebaseConfigured() {
+  return FIREBASE_CONFIG.apiKey !== "YOUR_API_KEY" &&
+    FIREBASE_CONFIG.apiKey !== "";
+}
+
+// Sync code management — used as the Firestore document path key
+const SYNC_CODE_KEY = 'life_manager_sync_code';
+
+function getSyncCode() {
+  return localStorage.getItem(SYNC_CODE_KEY);
+}
+
+function setSyncCode(code) {
+  localStorage.setItem(SYNC_CODE_KEY, code);
+}
+
+function generateSyncCode() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = '';
+  for (let i = 0; i < 6; i++) {
+    code += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return code;
+}
+
+function ensureSyncCode() {
+  let code = getSyncCode();
+  if (!code) {
+    code = generateSyncCode();
+    setSyncCode(code);
+  }
+  return code;
+}
+  </script>
+  <script>
+    /**
+ * 工具函数库
+ */
+
+const Utils = {
+  // ===== ID Generation =====
+  generateId() {
+    return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  },
+
+  // ===== Date Utilities =====
+  formatDate(date) {
+    if (!date) return '';
+    const d = new Date(date);
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  },
+
+  formatDateTime(date) {
+    if (!date) return '';
+    const d = new Date(date);
+    const dateStr = this.formatDate(d);
+    const h = String(d.getHours()).padStart(2, '0');
+    const min = String(d.getMinutes()).padStart(2, '0');
+    return `${dateStr} ${h}:${min}`;
+  },
+
+  formatTime(time) {
+    if (!time) return '';
+    const [h, m] = time.split(':');
+    return `${h}:${m}`;
+  },
+
+  today() {
+    return this.formatDate(new Date());
+  },
+
+  getMonthString(date) {
+    const d = new Date(date);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+  },
+
+  currentMonth() {
+    return this.getMonthString(new Date());
+  },
+
+  parseDate(dateStr) {
+    if (!dateStr) return new Date();
+    if (dateStr.includes('T')) return new Date(dateStr);
+    return new Date(dateStr + 'T00:00:00');
+  },
+
+  getDayOfWeek(date) {
+    const d = date ? new Date(date) : new Date();
+    return d.getDay(); // 0=Sunday, 1=Monday, ..., 6=Saturday
+  },
+
+  getDayName(dayOfWeek) {
+    const names = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+    return names[dayOfWeek] || '';
+  },
+
+  getDayNameShort(dayOfWeek) {
+    const names = ['日', '一', '二', '三', '四', '五', '六'];
+    return names[dayOfWeek] || '';
+  },
+
+  getMonthDays(year, month) {
+    // month is 0-indexed
+    return new Date(year, month + 1, 0).getDate();
+  },
+
+  getMonthMatrix(year, month) {
+    // Returns array of weeks, each with 7 days
+    const firstDay = new Date(year, month, 1);
+    const startDayOfWeek = (firstDay.getDay() + 6) % 7;
+    const daysInMonth = this.getMonthDays(year, month);
+    const daysInPrevMonth = this.getMonthDays(year, month - 1);
+
+    const weeks = [];
+    let currentDay = 1;
+    let nextMonthDay = 1;
+
+    // Calculate number of weeks needed
+    const totalCells = Math.ceil((startDayOfWeek + daysInMonth) / 7) * 7;
+
+    for (let i = 0; i < totalCells; i++) {
+      const weekIndex = Math.floor(i / 7);
+      if (!weeks[weekIndex]) weeks[weekIndex] = [];
+
+      const dayIndex = i % 7;
+      if (i < startDayOfWeek) {
+        // Previous month
+        const day = daysInPrevMonth - startDayOfWeek + i + 1;
+        const prevMonth = month - 1 < 0 ? 11 : month - 1;
+        const prevYear = month - 1 < 0 ? year - 1 : year;
+        weeks[weekIndex][dayIndex] = {
+          day, year: prevYear, month: prevMonth,
+          isCurrentMonth: false,
+          dateStr: this.formatDate(new Date(prevYear, prevMonth, day))
+        };
+      } else if (currentDay <= daysInMonth) {
+        weeks[weekIndex][dayIndex] = {
+          day: currentDay, year, month,
+          isCurrentMonth: true,
+          dateStr: this.formatDate(new Date(year, month, currentDay))
+        };
+        currentDay++;
+      } else {
+        // Next month
+        const nextMonth = month + 1 > 11 ? 0 : month + 1;
+        const nextYear = month + 1 > 11 ? year + 1 : year;
+        weeks[weekIndex][dayIndex] = {
+          day: nextMonthDay, year: nextYear, month: nextMonth,
+          isCurrentMonth: false,
+          dateStr: this.formatDate(new Date(nextYear, nextMonth, nextMonthDay))
+        };
+        nextMonthDay++;
+      }
+    }
+    return weeks;
+  },
+
+  // ===== Chinese Holidays =====
+  // 法定节假日 { 'YYYY-MM-DD': '节假日名称' }
+  chineseHolidays: {
+    // 2025
+    '2025-01-01': '元旦', '2025-01-28': '除夕', '2025-01-29': '春节',
+    '2025-01-30': '春节', '2025-01-31': '春节', '2025-02-01': '春节',
+    '2025-02-02': '春节', '2025-02-03': '春节', '2025-02-04': '春节',
+    '2025-04-04': '清明', '2025-05-01': '劳动节', '2025-05-02': '劳动节',
+    '2025-05-03': '劳动节', '2025-05-04': '劳动节', '2025-05-05': '劳动节',
+    '2025-05-31': '端午', '2025-06-01': '端午', '2025-06-02': '端午',
+    '2025-10-01': '国庆', '2025-10-02': '国庆', '2025-10-03': '国庆',
+    '2025-10-04': '国庆', '2025-10-05': '国庆', '2025-10-06': '中秋',
+    '2025-10-07': '国庆', '2025-10-08': '国庆',
+    // 2026
+    '2026-01-01': '元旦', '2026-02-16': '除夕', '2026-02-17': '春节',
+    '2026-02-18': '春节', '2026-02-19': '春节', '2026-02-20': '春节',
+    '2026-02-21': '春节', '2026-02-22': '春节', '2026-02-23': '春节',
+    '2026-04-04': '清明', '2026-04-05': '清明', '2026-04-06': '清明',
+    '2026-05-01': '劳动节', '2026-05-02': '劳动节', '2026-05-03': '劳动节',
+    '2026-05-04': '劳动节', '2026-05-05': '劳动节',
+    '2026-06-19': '端午', '2026-06-20': '端午', '2026-06-21': '端午',
+    '2026-09-25': '中秋', '2026-09-26': '中秋', '2026-09-27': '中秋',
+    '2026-10-01': '国庆', '2026-10-02': '国庆', '2026-10-03': '国庆',
+    '2026-10-04': '国庆', '2026-10-05': '国庆', '2026-10-06': '国庆',
+    '2026-10-07': '国庆', '2026-10-08': '国庆',
+    // 2027
+    '2027-01-01': '元旦', '2027-02-05': '除夕', '2027-02-06': '春节',
+    '2027-02-07': '春节', '2027-02-08': '春节', '2027-02-09': '春节',
+    '2027-02-10': '春节', '2027-02-11': '春节', '2027-02-12': '春节',
+    '2027-04-04': '清明', '2027-04-05': '清明', '2027-04-06': '清明',
+    '2027-05-01': '劳动节', '2027-05-02': '劳动节', '2027-05-03': '劳动节',
+    '2027-06-09': '端午', '2027-06-10': '端午', '2027-06-11': '端午',
+    '2027-09-14': '中秋', '2027-09-15': '中秋', '2027-09-16': '中秋',
+    '2027-10-01': '国庆', '2027-10-02': '国庆', '2027-10-03': '国庆',
+    '2027-10-04': '国庆', '2027-10-05': '国庆', '2027-10-06': '国庆',
+    '2027-10-07': '国庆',
+  },
+
+  // 调休上班日 { 'YYYY-MM-DD': '调休' }
+  chineseWorkdays: {
+    '2025-01-26': '调休', '2025-02-08': '调休', '2025-04-27': '调休',
+    '2025-09-28': '调休', '2025-10-11': '调休',
+    '2026-02-14': '调休', '2026-02-15': '调休', '2026-04-26': '调休',
+    '2026-09-19': '调休', '2026-10-10': '调休',
+    '2027-02-20': '调休', '2027-04-25': '调休', '2027-09-18': '调休',
+    '2027-10-09': '调休',
+  },
+
+  getHoliday(dateStr) {
+    return this.chineseHolidays[dateStr] || null;
+  },
+
+  isWorkday(dateStr) {
+    return !!this.chineseWorkdays[dateStr];
+  },
+
+  isWeekend(dayOfWeek) {
+    return dayOfWeek === 0 || dayOfWeek === 6;
+  },
+
+  // ===== Currency =====
+  formatMoney(amount) {
+    const num = Number(amount) || 0;
+    return num.toLocaleString('zh-CN', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  },
+
+  formatMoneyShort(amount) {
+    const num = Number(amount) || 0;
+    if (Math.abs(num) >= 10000) {
+      return (num / 10000).toFixed(1) + '万';
+    }
+    return this.formatMoney(num);
+  },
+
+  // ===== Color =====
+  categoryColors: [
+    '#6366f1', '#ec4899', '#f59e0b', '#10b981',
+    '#06b6d4', '#8b5cf6', '#ef4444', '#14b8a6',
+    '#f97316', '#84cc16', '#3b82f6', '#a855f7'
+  ],
+
+  getColorForCategory(index) {
+    return this.categoryColors[index % this.categoryColors.length];
+  },
+
+  // ===== LocalStorage helpers =====
+  lsGet(key, defaultValue) {
+    try {
+      const val = localStorage.getItem(key);
+      return val ? JSON.parse(val) : defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  },
+
+  lsSet(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (e) {
+      console.error('LocalStorage set error:', e);
+    }
+  },
+
+  // ===== Misc =====
+  debounce(fn, delay) {
+    let timer;
+    return function (...args) {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+  },
+
+  truncate(str, max) {
+    if (!str) return '';
+    return str.length > max ? str.slice(0, max) + '...' : str;
+  },
+
+  downloadFile(filename, content) {
+    const blob = new Blob([content], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+};
+  </script>
+  <script>
+    /**
+ * 数据层 — IndexedDB 本地存储 + Firebase Firestore 云端同步
+ * 统一 API，模块只需调用 DB.xxx 即可，无需关心数据来自哪里
+ */
+
+const DB = {
+  db: null,
+  firestore: null,
+  syncCode: null,
+  listeners: {},
+  useCloud: false,
+
+  // ===== IndexedDB =====
+  async _openIDB() {
+    if (this.db) return this.db;
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open('life_manager', 1);
+      req.onupgradeneeded = (e) => {
+        const db = e.target.result;
+        const stores = ['transactions', 'events', 'fitnessPlans', 'dietPlans', 'categories', 'meta'];
+        stores.forEach(s => {
+          if (!db.objectStoreNames.contains(s)) {
+            db.createObjectStore(s, { keyPath: 'id' });
+          }
+        });
+      };
+      req.onsuccess = () => { this.db = req.result; resolve(req.result); };
+      req.onerror = () => reject(req.error);
+    });
+  },
+
+  async _idbGetAll(store) {
+    const db = await this._openIDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(store, 'readonly');
+      const req = tx.objectStore(store).getAll();
+      req.onsuccess = () => resolve(req.result || []);
+      req.onerror = () => reject(req.error);
+    });
+  },
+
+  async _idbPut(store, data) {
+    const db = await this._openIDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(store, 'readwrite');
+      tx.objectStore(store).put(data);
+      tx.oncomplete = () => resolve(data);
+      tx.onerror = () => reject(tx.error);
+    });
+  },
+
+  async _idbDelete(store, id) {
+    const db = await this._openIDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(store, 'readwrite');
+      tx.objectStore(store).delete(id);
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  },
+
+  async _idbClear(store) {
+    const db = await this._openIDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(store, 'readwrite');
+      tx.objectStore(store).clear();
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  },
+
+  // ===== Firebase Firestore =====
+  _initFirestore() {
+    if (!isFirebaseConfigured()) return false;
+    try {
+      if (!firebase.apps.length) {
+        firebase.initializeApp(FIREBASE_CONFIG);
+      }
+      this.firestore = firebase.firestore();
+      this.syncCode = ensureSyncCode();
+      this.useCloud = true;
+      return true;
+    } catch (e) {
+      console.error('Firestore init failed:', e);
+      return false;
+    }
+  },
+
+  _collection(store) {
+    return this.firestore
+      .collection('data')
+      .doc(this.syncCode)
+      .collection(store);
+  },
+
+  async _firestoreGetAll(store) {
+    const snap = await this._collection(store).get();
+    return snap.docs.map(d => d.data());
+  },
+
+  async _firestorePut(store, data) {
+    await this._collection(store).doc(data.id).set(data);
+    return data;
+  },
+
+  async _firestoreDelete(store, id) {
+    await this._collection(store).doc(id).delete();
+  },
+
+  async _firestoreClear(store) {
+    const snap = await this._collection(store).get();
+    const batch = this.firestore.batch();
+    snap.docs.forEach(d => batch.delete(d.ref));
+    await batch.commit();
+  },
+
+  // Real-time listeners for cloud sync
+  _subscribeCloud(store, callback) {
+    return this._collection(store).onSnapshot((snap) => {
+      const items = snap.docs.map(d => d.data());
+      callback(items);
+    });
+  },
+
+  // ===== Unified API =====
+  async init() {
+    await this._openIDB();
+    this._initFirestore();
+    if (this.useCloud) {
+      // Sync local from cloud on init
+      await this._syncFromCloud();
+    }
+  },
+
+  async _syncFromCloud() {
+    const stores = ['transactions', 'events', 'fitnessPlans', 'dietPlans', 'categories'];
+    for (const s of stores) {
+      const cloudItems = await this._firestoreGetAll(s);
+      // Overwrite local with cloud data
+      await this._idbClear(s);
+      for (const item of cloudItems) {
+        await this._idbPut(s, item);
+      }
+    }
+  },
+
+  async getAll(store) {
+    return this._idbGetAll(store);
+  },
+
+  async add(store, data) {
+    const item = { ...data, id: data.id || Utils.generateId(), createdAt: Date.now() };
+    await this._idbPut(store, item);
+    if (this.useCloud) await this._firestorePut(store, item);
+    return item;
+  },
+
+  async update(store, id, updates) {
+    const all = await this._idbGetAll(store);
+    const existing = all.find(x => x.id === id);
+    if (!existing) return null;
+    const updated = { ...existing, ...updates, updatedAt: Date.now() };
+    await this._idbPut(store, updated);
+    if (this.useCloud) await this._firestorePut(store, updated);
+    return updated;
+  },
+
+  async put(store, data) {
+    const item = { ...data, id: data.id || Utils.generateId() };
+    await this._idbPut(store, item);
+    if (this.useCloud) await this._firestorePut(store, item);
+    return item;
+  },
+
+  async remove(store, id) {
+    await this._idbDelete(store, id);
+    if (this.useCloud) await this._firestoreDelete(store, id);
+  },
+
+  async clearStore(store) {
+    await this._idbClear(store);
+    if (this.useCloud) await this._firestoreClear(store);
+  },
+
+  async clearAll() {
+    const stores = ['transactions', 'events', 'fitnessPlans', 'dietPlans', 'categories'];
+    for (const s of stores) {
+      await this.clearStore(s);
+    }
+  },
+
+  async exportAll() {
+    const stores = ['transactions', 'events', 'fitnessPlans', 'dietPlans', 'categories'];
+    const data = {};
+    for (const s of stores) {
+      data[s] = await this._idbGetAll(s);
+    }
+    return { ...data, exportDate: Utils.today() };
+  },
+
+  async importAll(data) {
+    const stores = ['transactions', 'events', 'fitnessPlans', 'dietPlans', 'categories'];
+    for (const s of stores) {
+      if (data[s]) {
+        await this._idbClear(s);
+        for (const item of data[s]) {
+          await this._idbPut(s, item);
+          if (this.useCloud) await this._firestorePut(s, item);
+        }
+      }
+    }
+  },
+
+  // Real-time subscription (for cloud mode)
+  subscribe(store, callback) {
+    if (!this.listeners[store]) this.listeners[store] = [];
+    this.listeners[store].push(callback);
+
+    if (this.useCloud) {
+      const unsub = this._subscribeCloud(store, (items) => {
+        // Update local cache
+        this._idbClear(store).then(() => {
+          items.forEach(item => this._idbPut(store, item));
+          this.listeners[store]?.forEach(cb => cb(items));
+        });
+      });
+      return () => {
+        unsub();
+        this.listeners[store] = this.listeners[store].filter(cb => cb !== callback);
+      };
+    }
+    return () => {
+      this.listeners[store] = this.listeners[store].filter(cb => cb !== callback);
+    };
+  },
+
+  isOnline() {
+    return this.useCloud && navigator.onLine;
+  },
+
+  getSyncStatus() {
+    if (!this.useCloud) return 'local';
+    return navigator.onLine ? 'synced' : 'offline';
+  }
+};
+  </script>
+  <script>
+    /**
+ * 响应式全局 Store — 使用 Vue 3 reactivity
+ * 所有模块共享同一数据源
+ */
+
+window.Store = (function() {
+const { reactive, ref, computed } = Vue;
+
+const Store = {
+  state: reactive({
+    // Navigation
+    currentModule: 'dashboard',
+
+    // Theme
+    theme: Utils.lsGet('lm_theme', 'light'),
+
+    // Data collections
+    transactions: [],
+    events: [],
+    fitnessPlans: [],
+    dietPlans: [],
+    categories: [],
+
+    // Loading state
+    loading: true,
+
+    // Sync status
+    syncStatus: 'local',
+  }),
+
+  // ===== Init =====
+  async init() {
+    await DB.init();
+    await this.loadAll();
+    this.state.syncStatus = DB.getSyncStatus();
+
+    // Set up real-time listeners for cloud sync
+    const stores = ['transactions', 'events', 'fitnessPlans', 'dietPlans', 'categories'];
+    stores.forEach(s => {
+      DB.subscribe(s, (items) => {
+        this.state[s] = items;
+      });
+    });
+
+    // Listen for online/offline
+    window.addEventListener('online', () => {
+      this.state.syncStatus = DB.getSyncStatus();
+    });
+    window.addEventListener('offline', () => {
+      this.state.syncStatus = DB.getSyncStatus();
+    });
+
+    // Apply theme
+    this.applyTheme();
+    this.state.loading = false;
+  },
+
+  async loadAll() {
+    this.state.transactions = await DB.getAll('transactions');
+    this.state.events = await DB.getAll('events');
+    this.state.fitnessPlans = await DB.getAll('fitnessPlans');
+    this.state.dietPlans = await DB.getAll('dietPlans');
+    this.state.categories = await DB.getAll('categories');
+  },
+
+  // ===== Theme =====
+  applyTheme() {
+    document.documentElement.setAttribute('data-theme', this.state.theme);
+  },
+
+  toggleTheme() {
+    this.state.theme = this.state.theme === 'light' ? 'dark' : 'light';
+    Utils.lsSet('lm_theme', this.state.theme);
+    this.applyTheme();
+  },
+
+  // ===== Navigation =====
+  navigate(module) {
+    this.state.currentModule = module;
+    if (location.hash !== '#' + module) {
+      location.hash = module;
+    }
+  },
+
+  // ===== Transactions (Accounting) =====
+  async addTransaction(data) {
+    const item = await DB.add('transactions', data);
+    this.state.transactions.push(item);
+    return item;
+  },
+
+  async updateTransaction(id, updates) {
+    const updated = await DB.update('transactions', id, updates);
+    const idx = this.state.transactions.findIndex(t => t.id === id);
+    if (idx >= 0) this.state.transactions[idx] = updated;
+    return updated;
+  },
+
+  async deleteTransaction(id) {
+    await DB.remove('transactions', id);
+    this.state.transactions = this.state.transactions.filter(t => t.id !== id);
+  },
+
+  // ===== Events (Calendar) =====
+  async addEvent(data) {
+    const item = await DB.add('events', data);
+    this.state.events.push(item);
+    return item;
+  },
+
+  async updateEvent(id, updates) {
+    const updated = await DB.update('events', id, updates);
+    const idx = this.state.events.findIndex(e => e.id === id);
+    if (idx >= 0) this.state.events[idx] = updated;
+    return updated;
+  },
+
+  async deleteEvent(id) {
+    await DB.remove('events', id);
+    this.state.events = this.state.events.filter(e => e.id !== id);
+  },
+
+  // ===== Fitness Plans =====
+  async addFitnessPlan(data) {
+    const item = await DB.add('fitnessPlans', data);
+    this.state.fitnessPlans.push(item);
+    return item;
+  },
+
+  async updateFitnessPlan(id, updates) {
+    const updated = await DB.update('fitnessPlans', id, updates);
+    const idx = this.state.fitnessPlans.findIndex(f => f.id === id);
+    if (idx >= 0) this.state.fitnessPlans[idx] = updated;
+    return updated;
+  },
+
+  async deleteFitnessPlan(id) {
+    await DB.remove('fitnessPlans', id);
+    this.state.fitnessPlans = this.state.fitnessPlans.filter(f => f.id !== id);
+  },
+
+  // ===== Diet Plans =====
+  async addDietPlan(data) {
+    const item = await DB.add('dietPlans', data);
+    this.state.dietPlans.push(item);
+    return item;
+  },
+
+  async updateDietPlan(id, updates) {
+    const updated = await DB.update('dietPlans', id, updates);
+    const idx = this.state.dietPlans.findIndex(d => d.id === id);
+    if (idx >= 0) this.state.dietPlans[idx] = updated;
+    return updated;
+  },
+
+  async deleteDietPlan(id) {
+    await DB.remove('dietPlans', id);
+    this.state.dietPlans = this.state.dietPlans.filter(d => d.id !== id);
+  },
+
+  // ===== Categories =====
+  async addCategory(data) {
+    const item = await DB.add('categories', data);
+    this.state.categories.push(item);
+    return item;
+  },
+
+  async deleteCategory(id) {
+    await DB.remove('categories', id);
+    this.state.categories = this.state.categories.filter(c => c.id !== id);
+  },
+
+  getCategories(module) {
+    return this.state.categories.filter(c => c.module === module);
+  },
+
+  getCategoryColor(module, categoryName) {
+    const cat = this.state.categories.find(c => c.module === module && c.name === categoryName);
+    if (cat && cat.color) return cat.color;
+    // Default color based on name hash
+    const preset = this.getPresetCategories(module);
+    const presetCat = preset.find(c => c.name === categoryName);
+    if (presetCat && presetCat.color) return presetCat.color;
+    return '#94a3b8';
+  },
+
+  // ===== Preset Categories =====
+  presetCategories: {
+    accounting: [
+      { name: '工资', color: '#22c55e', type: 'income', icon: '💰' },
+      { name: '兼职', color: '#16a34a', type: 'income', icon: '💼' },
+      { name: '投资', color: '#10b981', type: 'income', icon: '📈' },
+      { name: '其他收入', color: '#14b8a6', type: 'income', icon: '➕' },
+      { name: '餐饮', color: '#ff6b6b', type: 'expense', icon: '🍜' },
+      { name: '交通', color: '#ffa94d', type: 'expense', icon: '🚗' },
+      { name: '购物', color: '#f783ac', type: 'expense', icon: '🛒' },
+      { name: '住房', color: '#b197fc', type: 'expense', icon: '🏠' },
+      { name: '娱乐', color: '#74c0fc', type: 'expense', icon: '🎮' },
+      { name: '医疗', color: '#63e6be', type: 'expense', icon: '🏥' },
+      { name: '教育', color: '#5c9eff', type: 'expense', icon: '📚' },
+      { name: '其他支出', color: '#ced4da', type: 'expense', icon: '📦' },
+    ],
+    calendar: [
+      { name: '工作', color: '#6366f1', icon: '💼' },
+      { name: '个人', color: '#22c55e', icon: '👤' },
+      { name: '家庭', color: '#f59e0b', icon: '👨‍👩‍👧' },
+      { name: '健康', color: '#06b6d4', icon: '🏥' },
+      { name: '提醒', color: '#ef4444', icon: '⏰' },
+      { name: '其他', color: '#94a3b8', icon: '📌' },
+    ],
+    fitness: [
+      { name: '胸', color: '#ef4444', icon: '💪' },
+      { name: '背', color: '#3b82f6', icon: '🔙' },
+      { name: '腿', color: '#22c55e', icon: '🦵' },
+      { name: '肩', color: '#f59e0b', icon: '🤸' },
+      { name: '手臂', color: '#8b5cf6', icon: '💪' },
+      { name: '核心', color: '#06b6d4', icon: '🎯' },
+      { name: '有氧', color: '#ec4899', icon: '🏃' },
+      { name: '拉伸', color: '#14b8a6', icon: '🧘' },
+    ],
+    diet: [
+      { name: '早餐', color: '#f59e0b', icon: '🌅' },
+      { name: '午餐', color: '#22c55e', icon: '☀️' },
+      { name: '晚餐', color: '#6366f1', icon: '🌙' },
+      { name: '加餐', color: '#ec4899', icon: '🍎' },
+    ],
+  },
+
+  getPresetCategories(module) {
+    return this.presetCategories[module] || [];
+  },
+
+  getAllCategoriesForModule(module) {
+    const preset = this.getPresetCategories(module);
+    const custom = this.getCategories(module);
+    return [...preset, ...custom];
+  },
+
+  // ===== Data Export/Import =====
+  async exportData() {
+    return await DB.exportAll();
+  },
+
+  async importData(data) {
+    await DB.importAll(data);
+    await this.loadAll();
+  },
+
+  async clearAllData() {
+    await DB.clearAll();
+    await this.loadAll();
+  },
+
+  // ===== Computed Getters =====
+  getMonthlySummary(monthStr) {
+    const txns = this.state.transactions.filter(t => {
+      return Utils.getMonthString(t.date) === monthStr;
+    });
+    const income = txns
+      .filter(t => t.type === 'income')
+      .reduce((sum, t) => sum + Number(t.amount || 0), 0);
+    const expense = txns
+      .filter(t => t.type === 'expense')
+      .reduce((sum, t) => sum + Number(t.amount || 0), 0);
+    return { income, expense, balance: income - expense, count: txns.length };
+  },
+
+  getYearlySummary(yearStr) {
+    const txns = this.state.transactions.filter(t => {
+      return t.date && t.date.startsWith(yearStr);
+    });
+    const income = txns
+      .filter(t => t.type === 'income')
+      .reduce((sum, t) => sum + Number(t.amount || 0), 0);
+    const expense = txns
+      .filter(t => t.type === 'expense')
+      .reduce((sum, t) => sum + Number(t.amount || 0), 0);
+    return { income, expense, balance: income - expense, count: txns.length };
+  },
+
+  getCategoryBreakdown(monthStr, type) {
+    const txns = this.state.transactions.filter(t => {
+      return Utils.getMonthString(t.date) === monthStr && t.type === type;
+    });
+    const map = {};
+    for (const t of txns) {
+      const cat = t.category || '未分类';
+      if (!map[cat]) map[cat] = { name: cat, amount: 0, count: 0, color: this.getCategoryColor('accounting', cat) };
+      map[cat].amount += Number(t.amount || 0);
+      map[cat].count += 1;
+    }
+    return Object.values(map).sort((a, b) => b.amount - a.amount);
+  },
+
+  getYearlyCategoryBreakdown(yearStr, type) {
+    const txns = this.state.transactions.filter(t => {
+      return t.date && t.date.startsWith(yearStr) && t.type === type;
+    });
+    const map = {};
+    for (const t of txns) {
+      const cat = t.category || '未分类';
+      if (!map[cat]) map[cat] = { name: cat, amount: 0, count: 0, color: this.getCategoryColor('accounting', cat) };
+      map[cat].amount += Number(t.amount || 0);
+      map[cat].count += 1;
+    }
+    return Object.values(map).sort((a, b) => b.amount - a.amount);
+  },
+
+  getTodayEvents() {
+    const today = Utils.today();
+    return this.state.events
+      .filter(e => e.date === today)
+      .sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+  },
+
+  getTodayFitness() {
+    const today = new Date().getDay();
+    const todayKey = String(today);
+    return this.state.fitnessPlans
+      .filter(f => f.dayOfWeek === todayKey || f.dayOfWeek === today)
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+  },
+
+  getTodayDiet() {
+    const today = Utils.today();
+    return this.state.dietPlans.filter(d => d.date === today);
+  },
+};
+
+return Store;
+})();
+  </script>
+  <script>
+    /**
+ * OCR 截图识别工具 — 使用 Tesseract.js 进行浏览器端文字识别
+ * 支持识别支付截图中的金额、日期、商户名，并自动匹配分类
+ */
+window.OCRUtil = {
+
+  worker: null,
+
+  async initWorker() {
+    if (this.worker) return this.worker;
+    this.worker = await Tesseract.createWorker('chi_sim+eng', 1, {
+      logger: () => {},
+    });
+    return this.worker;
+  },
+
+  async recognize(file, onProgress) {
+    const worker = await this.initWorker();
+    const { data } = await worker.recognize(file);
+    return data.text;
+  },
+
+  // ===== 智能解析 OCR 文本 =====
+  parseReceipt(text) {
+    const result = {
+      amount: null,
+      date: null,
+      merchant: '',
+      category: '',
+      type: 'expense',
+      rawText: text,
+      possibleItems: [],
+    };
+
+    // 识别金额：匹配 ¥符号后面的数字 或 纯数字带小数点
+    const amountPatterns = [
+      /[¥￥]\s*(\d+[.,]?\d*)/,
+      /金额[：:]\s*[¥￥]?\s*(\d+[.,]?\d*)/,
+      /(\d+[.]\d{2})\s*元/,
+      /支付[金额]*[：:]\s*[¥￥]?\s*(\d+[.,]?\d*)/,
+      /实付[：:]\s*[¥￥]?\s*(\d+[.,]?\d*)/,
+      /实收[：:]\s*[¥￥]?\s*(\d+[.,]?\d*)/,
+    ];
+
+    for (const pattern of amountPatterns) {
+      const match = text.match(pattern);
+      if (match && match[1]) {
+        const num = match[1].replace(',', '.');
+        result.amount = Number(num);
+        if (pattern.source.includes('实收') || pattern.source.includes('收入') || pattern.source.includes('退款') || pattern.source.includes('到账')) {
+          result.type = 'income';
+        }
+        break;
+      }
+    }
+
+    // 如果没匹配到特定模式，尝试通用金额匹配
+    if (!result.amount) {
+      const allAmounts = text.match(/[¥￥]\s*(\d+[.,]?\d*)/g);
+      if (allAmounts && allAmounts.length > 0) {
+        const nums = allAmounts.map(s => Number(s.replace(/[¥￥,\s]/g, '').replace(',', '.')));
+        result.amount = nums.reduce((max, n) => n > max ? n : max, 0);
+      }
+    }
+
+    // 识别日期
+    const datePatterns = [
+      /(\d{4}[-年]\d{1,2}[-月]\d{1,2})/,
+      /(\d{4}\/\d{1,2}\/\d{1,2})/,
+      /(\d{4}\.\d{1,2}\.\d{1,2})/,
+    ];
+
+    for (const pattern of datePatterns) {
+      const match = text.match(pattern);
+      if (match && match[1]) {
+        let dateStr = match[1]
+          .replace('年', '-').replace('月', '-')
+          .replace(/\//g, '-').replace(/\./g, '-');
+        const parts = dateStr.split('-');
+        if (parts.length === 3) {
+          result.date = `${parts[0]}-${parts[1].padStart(2, '0')}-${parts[2].padStart(2, '0')}`;
+        }
+        break;
+      }
+    }
+
+    // 如果没识别到日期，尝试匹配时间
+    if (!result.date) {
+      const timeMatch = text.match(/(\d{4}-\d{2}-\d{2})/);
+      if (timeMatch) result.date = timeMatch[1];
+    }
+
+    // 如果还没日期，用今天
+    if (!result.date) result.date = Utils.today();
+
+    // 识别商户名和分类
+    result.category = this.matchCategory(text);
+    result.merchant = this.extractMerchant(text);
+
+    // 收入关键词检测
+    const incomeKeywords = ['收款', '到账', '退款', '收入', '转入', '工资', '收益', '红包', '转账收入'];
+    for (const kw of incomeKeywords) {
+      if (text.includes(kw)) {
+        result.type = 'income';
+        break;
+      }
+    }
+
+    return result;
+  },
+
+  // 分类关键词匹配
+  categoryKeywords: {
+    '餐饮': ['美团', '饿了么', '肯德基', '麦当劳', '星巴克', '餐厅', '饭', '面', '外卖', '食', '餐', '咖啡', '奶茶', '茶', '小吃', '烧烤', '火锅', '便利店', '超市', '7-11', '罗森', '叮咚', '盒马', '生鲜', '烘焙', '面包', '蛋糕', '饮', '酒'],
+    '交通': ['滴滴', '出行', '地铁', '公交', '高铁', '火车', '机票', '航空', '打车', '停车', '加油', '充电', 'ETC', '共享单车', '哈啰', '12306', '铁路', '航班'],
+    '购物': ['淘宝', '天猫', '京东', '拼多多', '苏宁', '唯品会', '购物', '商城', '旗舰店', '百货', '优衣库', 'ZARA', '数码', '电子', '服饰', '鞋', '包', '化妆品', '护肤'],
+    '住房': ['房租', '物业', '水电', '燃气', '宽带', '网费', '电费', '水费', '天然气', '供暖', '暖气'],
+    '娱乐': ['电影', '票', 'KTV', '游戏', 'Steam', '视频', '会员', '音乐', '演出', '剧本杀', '密室', '游乐', '腾讯视频', '爱奇艺', '优酷', 'B站', '哔哩'],
+    '医疗': ['医院', '药', '诊所', '挂号', '体检', '齿科', '眼科', '美容', '口腔', '药房', '健康'],
+    '教育': ['学', '培训', '课程', '书', '考试', '报名', '学费', '教育', '知网', '网课', '知识'],
+    '其他支出': ['转账', '红包', '代付', 'AA'],
+  },
+
+  matchCategory(text) {
+    let bestMatch = '';
+    let bestScore = 0;
+
+    for (const [category, keywords] of Object.entries(this.categoryKeywords)) {
+      let score = 0;
+      for (const kw of keywords) {
+        if (text.includes(kw)) score++;
+      }
+      if (score > bestScore) {
+        bestScore = score;
+        bestMatch = category;
+      }
+    }
+
+    return bestMatch;
+  },
+
+  extractMerchant(text) {
+    // 尝试提取商户名
+    const patterns = [
+      /商户[：:]\s*(.+?)[\n\r]/,
+      /收款方[：:]\s*(.+?)[\n\r]/,
+      /付款给\s*(.+?)[\n\r]/,
+      /向(.+?)付款/,
+    ];
+
+    for (const pattern of patterns) {
+      const match = text.match(pattern);
+      if (match && match[1]) {
+        return match[1].trim().slice(0, 20);
+      }
+    }
+
+    return '';
+  },
+};
+  </script>
+  <script>
+    /**
+ * 首页总览模块 — 今日日程 + 本月收支 + 今日健身 + 今日饮食 + 快捷入口
+ */
+window.DashboardComponent = {
+  template: `
+    <div class="dashboard-module">
+      <!-- Quick links -->
+      <div class="dashboard-section">
+        <div class="dashboard-section-title">功能导航</div>
+        <div class="quick-links">
+          <div class="quick-link" @click="goTo('accounting')">
+            <div class="quick-link-icon">💰</div>
+            <div class="quick-link-label">记账</div>
+          </div>
+          <div class="quick-link" @click="goTo('calendar')">
+            <div class="quick-link-icon">📅</div>
+            <div class="quick-link-label">日历</div>
+          </div>
+          <div class="quick-link" @click="goTo('fitness')">
+            <div class="quick-link-icon">🏋️</div>
+            <div class="quick-link-label">健身</div>
+          </div>
+          <div class="quick-link" @click="goTo('diet')">
+            <div class="quick-link-icon">🍽️</div>
+            <div class="quick-link-label">饮食</div>
+          </div>
+          <div class="quick-link" @click="goTo('settings')">
+            <div class="quick-link-icon">⚙️</div>
+            <div class="quick-link-label">设置</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">{{ greeting }}</h1>
+          <div class="text-muted text-sm">{{ todayLabel }}</div>
+        </div>
+      </div>
+
+      <!-- Today's fitness -->
+      <div class="dashboard-section">
+        <div class="dashboard-section-title">
+          🏋️ 今日健身
+          <span class="text-muted" style="font-weight:400;font-size:var(--font-xs)">
+            {{ fitnessCompleted }}/{{ todayFitness.length }} 完成
+          </span>
+        </div>
+        <div class="card">
+          <div v-if="todayFitness.length === 0" class="empty-state">
+            <div class="empty-icon">休息日</div>
+            <div class="empty-text">今天没有健身计划</div>
+          </div>
+          <div v-else style="padding:var(--space-sm)">
+            <div v-for="ex in todayFitness" :key="ex.id"
+              class="exercise-item" :class="{ 'exercise-completed': ex.completedDate === today }">
+              <div class="exercise-checkbox"
+                :class="{ checked: ex.completedDate === today }"
+                @click="toggleFitness(ex)">
+              </div>
+              <div class="exercise-info">
+                <div class="exercise-name">{{ ex.name }}</div>
+                <div class="exercise-detail">{{ ex.sets }}组 × {{ ex.reps }}次</div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:var(--space-sm);text-align:center;border-top:1px solid var(--color-border)">
+            <button class="btn btn-ghost btn-sm" @click="goTo('fitness')">查看健身计划 →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Today's diet -->
+      <div class="dashboard-section">
+        <div class="dashboard-section-title">
+          🍽️ 今日饮食
+          <span class="text-muted" style="font-weight:400;font-size:var(--font-xs)">
+            {{ todayDiet.length }} 项 · {{ dietCalories }} kcal
+          </span>
+        </div>
+        <div class="card">
+          <div v-if="todayDiet.length === 0" class="empty-state">
+            <div class="empty-icon">🍽️</div>
+            <div class="empty-text">今天还没有添加饮食计划</div>
+          </div>
+          <div v-else style="padding:var(--space-sm)">
+            <div v-for="meal in mealTypes" :key="meal.key">
+              <div v-if="getMealFoods(meal.key).length > 0" class="meal-section" style="margin-bottom:var(--space-md)">
+                <div class="meal-header">
+                  <span class="meal-icon">{{ meal.icon }}</span>
+                  {{ meal.label }}
+                </div>
+                <div class="food-item" v-for="f in getMealFoods(meal.key)" :key="f.id">
+                  <span class="food-name">{{ f.name }}</span>
+                  <span class="food-portion">{{ f.portion }}{{ f.portion ? ' · ' : '' }}{{ f.calories }}kcal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:var(--space-sm);text-align:center;border-top:1px solid var(--color-border)">
+            <button class="btn btn-ghost btn-sm" @click="goTo('diet')">查看饮食计划 →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Today's events -->
+      <div class="dashboard-section">
+        <div class="dashboard-section-title">
+          📅 今日日程
+          <span class="text-muted" style="font-weight:400;font-size:var(--font-xs)">
+            {{ todayEvents.length }} 项
+          </span>
+        </div>
+        <div class="card">
+          <div v-if="todayEvents.length === 0" class="empty-state">
+            <div class="empty-icon">休息</div>
+            <div class="empty-text">今天没有日程安排</div>
+          </div>
+          <div v-else>
+            <div class="list-item" v-for="e in todayEvents" :key="e.id">
+              <div class="list-item-icon" :style="getCategoryStyle(e.category)">
+                {{ getCategoryIcon('calendar', e.category) }}
+              </div>
+              <div class="list-item-content">
+                <div class="list-item-title">{{ e.title }}</div>
+                <div class="list-item-sub">{{ e.time || '全天' }}{{ e.category ? ' · ' + e.category : '' }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body" style="padding:var(--space-sm);text-align:center;border-top:1px solid var(--color-border)">
+            <button class="btn btn-ghost btn-sm" @click="goTo('calendar')">查看日历 →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  `,
+
+  setup() {
+    const { computed } = Vue;
+    const today = Utils.today();
+
+    const greeting = computed(() => {
+      const h = new Date().getHours();
+      if (h < 6) return '凌晨好';
+      if (h < 9) return '早上好';
+      if (h < 12) return '上午好';
+      if (h < 14) return '中午好';
+      if (h < 18) return '下午好';
+      if (h < 22) return '晚上好';
+      return '夜深了';
+    });
+
+    const todayLabel = computed(() => {
+      const d = new Date();
+      const days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+      return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日 ${days[d.getDay()]}`;
+    });
+
+    const summary = computed(() => Store.getMonthlySummary(Utils.currentMonth()));
+
+    const todayEvents = computed(() => Store.getTodayEvents());
+
+    const todayFitness = computed(() => Store.getTodayFitness());
+
+    const fitnessCompleted = computed(() => {
+      return todayFitness.value.filter(e => e.completedDate === today).length;
+    });
+
+    const todayDiet = computed(() => Store.getTodayDiet());
+
+    const dietCalories = computed(() => {
+      return todayDiet.value.reduce((sum, f) => sum + (Number(f.calories) || 0), 0);
+    });
+
+    const mealTypes = [
+      { key: 'breakfast', label: '早餐', icon: '🌅' },
+      { key: 'lunch', label: '午餐', icon: '☀️' },
+      { key: 'dinner', label: '晚餐', icon: '🌙' },
+      { key: 'snack', label: '加餐', icon: '🍎' },
+    ];
+
+    function getMealFoods(mealType) {
+      return todayDiet.value.filter(f => f.mealType === mealType);
+    }
+
+    function getCategoryStyle(name) {
+      const color = Store.getCategoryColor('calendar', name);
+      return { background: color + '22', color };
+    }
+
+    function getCategoryIcon(module, name) {
+      const cats = Store.getAllCategoriesForModule(module);
+      const cat = cats.find(c => c.name === name);
+      return cat ? cat.icon : '📌';
+    }
+
+    function goTo(module) {
+      Store.navigate(module);
+    }
+
+    async function toggleFitness(ex) {
+      const completed = ex.completedDate === today;
+      await Store.updateFitnessPlan(ex.id, {
+        completedDate: completed ? '' : today
+      });
+    }
+
+    return {
+      Utils, today, greeting, todayLabel, summary,
+      todayEvents, todayFitness, fitnessCompleted, todayDiet, dietCalories,
+      mealTypes, getMealFoods, getCategoryStyle, getCategoryIcon, goTo, toggleFitness,
+    };
+  }
+};
+  </script>
+  <script>
+    /**
+ * 记账模块 — 收入+支出管理 + 截图OCR识别
+ */
+window.AccountingComponent = {
+  template: `
+    <div class="accounting-module">
+      <div class="page-header">
+        <h1 class="page-title">记账</h1>
+        <div class="page-actions">
+          <button class="btn btn-secondary" @click="triggerOCRImport">
+            <span>📷</span> 截图识别
+          </button>
+          <button class="btn btn-primary" @click="openAddModal()">
+            <span>+</span> 添加记录
+          </button>
+        </div>
+        <input type="file" ref="ocrFileInput" accept="image/*" style="display:none" @change="handleOCRImage" />
+      </div>
+
+      <!-- Month summary -->
+      <div class="summary-bar">
+        <div class="summary-item">
+          <span class="summary-item-label">本月收入</span>
+          <span class="summary-item-value" style="color:var(--color-income)">¥{{ Utils.formatMoney(summary.income) }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-item-label">本月支出</span>
+          <span class="summary-item-value" style="color:var(--color-expense)">¥{{ Utils.formatMoney(summary.expense) }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-item-label">结余</span>
+          <span class="summary-item-value" style="color:var(--color-primary)">¥{{ Utils.formatMoney(summary.balance) }}</span>
+        </div>
+      </div>
+
+      <!-- Charts section -->
+      <div v-if="summary.count > 0 || yearlySummary.count > 0" style="margin-bottom:var(--space-lg)">
+        <!-- Time summary cards -->
+        <div style="display:flex;gap:8px;margin-bottom:var(--space-md);flex-wrap:wrap">
+          <div class="card" style="flex:1;min-width:90px;text-align:center;padding:10px 8px">
+            <div class="text-sm text-muted">今天</div>
+            <div style="font-size:11px;color:var(--color-text-muted);margin-bottom:4px">{{ todayDateStr }}</div>
+            <div style="font-size:13px;font-weight:700;color:var(--color-income)">+¥{{ Utils.formatMoney(todaySummary.income) }}</div>
+            <div style="font-size:13px;font-weight:700;color:var(--color-expense)">-¥{{ Utils.formatMoney(todaySummary.expense) }}</div>
+          </div>
+          <div class="card" style="flex:1;min-width:90px;text-align:center;padding:10px 8px">
+            <div class="text-sm text-muted">本月</div>
+            <div style="font-size:11px;color:var(--color-text-muted);margin-bottom:4px">{{ monthRangeStr }}</div>
+            <div style="font-size:13px;font-weight:700;color:var(--color-income)">+¥{{ Utils.formatMoney(summary.income) }}</div>
+            <div style="font-size:13px;font-weight:700;color:var(--color-expense)">-¥{{ Utils.formatMoney(summary.expense) }}</div>
+          </div>
+          <div class="card" style="flex:1;min-width:90px;text-align:center;padding:10px 8px">
+            <div class="text-sm text-muted">本年</div>
+            <div style="font-size:11px;color:var(--color-text-muted);margin-bottom:4px">{{ currentYear }}年</div>
+            <div style="font-size:13px;font-weight:700;color:var(--color-income)">+¥{{ Utils.formatMoney(yearlySummary.income) }}</div>
+            <div style="font-size:13px;font-weight:700;color:var(--color-expense)">-¥{{ Utils.formatMoney(yearlySummary.expense) }}</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Filters -->
+      <div class="filter-bar">
+        <div class="month-picker">
+          <button class="btn-ghost btn-icon" @click="prevMonth">‹</button>
+          <span class="month-picker-label">{{ displayMonth }}</span>
+          <button class="btn-ghost btn-icon" @click="nextMonth">›</button>
+        </div>
+        <select v-model="filterCategory" class="form-select" style="width:auto;min-width:120px">
+          <option value="">全部分类</option>
+          <option v-for="cat in allCategories" :key="cat.name" :value="cat.name">{{ cat.icon }} {{ cat.name }}</option>
+        </select>
+        <select v-model="filterType" class="form-select" style="width:auto;min-width:100px">
+          <option value="">全部</option>
+          <option value="income">收入</option>
+          <option value="expense">支出</option>
+        </select>
+      </div>
+
+      <!-- Transaction list -->
+      <div class="card">
+        <div v-if="filteredTransactions.length === 0" class="empty-state">
+          <div class="empty-icon">📝</div>
+          <div class="empty-text">本月暂无记录，点击"添加记录"或"截图识别"开始记账</div>
+        </div>
+        <div v-else>
+          <div class="list-item" v-for="t in filteredTransactions" :key="t.id">
+            <div class="list-item-icon" :style="{ background: getCategoryColor(t.category) + '22', color: getCategoryColor(t.category) }">
+              {{ getCategoryIcon(t.category) }}
+            </div>
+            <div class="list-item-content">
+              <div class="list-item-title">{{ t.category || '未分类' }}</div>
+              <div class="list-item-sub">{{ t.date }}{{ t.note ? ' · ' + t.note : '' }}</div>
+            </div>
+            <div style="text-align:right;min-width:90px">
+              <div :style="{ color: t.type === 'income' ? 'var(--color-income)' : 'var(--color-expense)', fontWeight: 600 }">
+                {{ t.type === 'income' ? '+' : '-' }}¥{{ Utils.formatMoney(t.amount) }}
+              </div>
+            </div>
+            <div class="list-item-actions">
+              <button class="btn-ghost btn-icon" @click="openEditModal(t)">✏️</button>
+              <button class="btn-ghost btn-icon" @click="deleteTxn(t)">🗑</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monthly expense category donut + ranking -->
+      <div v-if="expenseByCategory.length > 0" class="card" style="margin-top:var(--space-lg)">
+        <div class="card-header">
+          <span>📊 {{ displayMonth }} 支出分类</span>
+          <span class="text-muted text-sm">{{ summary.count }}笔 · ¥{{ Utils.formatMoney(summary.expense) }}</span>
+        </div>
+        <div class="card-body" style="padding:var(--space-md);display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center">
+          <div style="flex:0 0 160px;text-align:center">
+            <svg :viewBox="'0 0 200 200'" style="width:150px;height:150px;margin:0 auto">
+              <g v-for="(seg, i) in expensePieSegments" :key="'e'+i">
+                <path :d="seg.path" :fill="seg.color" :stroke="'#fff'" :stroke-width="'2'" />
+              </g>
+              <circle cx="100" cy="100" r="50" fill="var(--color-surface)" />
+              <text x="100" y="92" text-anchor="middle" font-size="11" fill="var(--color-text-secondary)">总支出</text>
+              <text x="100" y="112" text-anchor="middle" font-size="14" font-weight="700" fill="var(--color-expense)">¥{{ Utils.formatMoney(summary.expense) }}</text>
+            </svg>
+          </div>
+          <div style="flex:1;min-width:180px">
+            <div v-for="(cat, idx) in expenseByCategory" :key="cat.name" style="margin-bottom:10px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+                <span style="display:flex;align-items:center;gap:6px">
+                  <span style="font-size:14px;color:var(--color-text-muted);width:18px">{{ idx + 1 }}</span>
+                  <span :style="{ display:'inline-block', width:'10px', height:'10px', borderRadius:'50%', background:cat.color }"></span>
+                  <span class="text-sm" style="font-weight:500">{{ cat.name }}</span>
+                </span>
+                <span style="text-align:right">
+                  <span class="text-sm" style="font-weight:700;color:var(--color-expense)">¥{{ Utils.formatMoney(cat.amount) }}</span>
+                  <span class="text-sm text-muted" style="margin-left:6px">{{ cat.percentage }}%</span>
+                </span>
+              </div>
+              <div style="height:6px;background:var(--color-bg-secondary);border-radius:3px;overflow:hidden">
+                <div :style="{ width: cat.percentage + '%', height: '100%', background: cat.color, borderRadius: '3px', transition: 'width 0.3s' }"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monthly income category donut + ranking (at bottom) -->
+      <div v-if="incomeByCategory.length > 0" class="card" style="margin-top:var(--space-lg)">
+        <div class="card-header">
+          <span>📊 {{ displayMonth }} 收入分类</span>
+          <span class="text-muted text-sm">{{ incomeCount }}笔 · ¥{{ Utils.formatMoney(summary.income) }}</span>
+        </div>
+        <div class="card-body" style="padding:var(--space-md);display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center">
+          <div style="flex:0 0 160px;text-align:center">
+            <svg :viewBox="'0 0 200 200'" style="width:150px;height:150px;margin:0 auto">
+              <g v-for="(seg, i) in incomePieSegments" :key="'i'+i">
+                <path :d="seg.path" :fill="seg.color" :stroke="'#fff'" :stroke-width="'2'" />
+              </g>
+              <circle cx="100" cy="100" r="50" fill="var(--color-surface)" />
+              <text x="100" y="92" text-anchor="middle" font-size="11" fill="var(--color-text-secondary)">总收入</text>
+              <text x="100" y="112" text-anchor="middle" font-size="14" font-weight="700" fill="var(--color-income)">¥{{ Utils.formatMoney(summary.income) }}</text>
+            </svg>
+          </div>
+          <div style="flex:1;min-width:180px">
+            <div v-for="(cat, idx) in incomeByCategory" :key="cat.name" style="margin-bottom:10px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+                <span style="display:flex;align-items:center;gap:6px">
+                  <span style="font-size:14px;color:var(--color-text-muted);width:18px">{{ idx + 1 }}</span>
+                  <span :style="{ display:'inline-block', width:'10px', height:'10px', borderRadius:'50%', background:cat.color }"></span>
+                  <span class="text-sm" style="font-weight:500">{{ cat.name }}</span>
+                </span>
+                <span style="text-align:right">
+                  <span class="text-sm" style="font-weight:700;color:var(--color-income)">¥{{ Utils.formatMoney(cat.amount) }}</span>
+                  <span class="text-sm text-muted" style="margin-left:6px">{{ cat.percentage }}%</span>
+                </span>
+              </div>
+              <div style="height:6px;background:var(--color-bg-secondary);border-radius:3px;overflow:hidden">
+                <div :style="{ width: cat.percentage + '%', height: '100%', background: cat.color, borderRadius: '3px', transition: 'width 0.3s' }"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Yearly summary card (at bottom) -->
+      <div v-if="yearlySummary.count > 0" class="card" style="margin-top:var(--space-lg)">
+        <div class="card-header">
+          <span>📅 {{ currentYear }}年 累计</span>
+          <span class="text-muted text-sm">{{ yearlySummary.count }}笔</span>
+        </div>
+        <div class="card-body" style="padding:var(--space-md)">
+          <div style="display:flex;justify-content:space-around;text-align:center;flex-wrap:wrap;gap:10px;margin-bottom:var(--space-md)">
+            <div>
+              <div class="text-sm text-muted">全年收入</div>
+              <div style="font-size:18px;font-weight:700;color:var(--color-income)">¥{{ Utils.formatMoney(yearlySummary.income) }}</div>
+            </div>
+            <div>
+              <div class="text-sm text-muted">全年支出</div>
+              <div style="font-size:18px;font-weight:700;color:var(--color-expense)">¥{{ Utils.formatMoney(yearlySummary.expense) }}</div>
+            </div>
+            <div>
+              <div class="text-sm text-muted">全年结余</div>
+              <div style="font-size:18px;font-weight:700;color:var(--color-primary)">¥{{ Utils.formatMoney(yearlySummary.balance) }}</div>
+            </div>
+          </div>
+          <!-- Yearly expense ranking -->
+          <div v-if="yearlyExpenseByCategory.length > 0">
+            <div style="font-weight:600;margin-bottom:8px;color:var(--color-expense)">全年支出排行</div>
+            <div v-for="(cat, idx) in yearlyExpenseByCategory.slice(0,5)" :key="'ye'+cat.name" style="display:flex;align-items:center;justify-content:space-between;padding:4px 0">
+              <span style="display:flex;align-items:center;gap:6px">
+                <span style="font-size:13px;color:var(--color-text-muted);width:18px">{{ idx + 1 }}</span>
+                <span :style="{ display:'inline-block', width:'10px', height:'10px', borderRadius:'50%', background:cat.color }"></span>
+                <span class="text-sm">{{ cat.name }}</span>
+              </span>
+              <span style="text-align:right">
+                <span class="text-sm" style="font-weight:600">¥{{ Utils.formatMoney(cat.amount) }}</span>
+                <span class="text-sm text-muted" style="margin-left:6px">{{ cat.percentage }}%</span>
+              </span>
+            </div>
+          </div>
+          <!-- Yearly income ranking -->
+          <div v-if="yearlyIncomeByCategory.length > 0" style="margin-top:var(--space-md)">
+            <div style="font-weight:600;margin-bottom:8px;color:var(--color-income)">全年收入排行</div>
+            <div v-for="(cat, idx) in yearlyIncomeByCategory.slice(0,5)" :key="'yi'+cat.name" style="display:flex;align-items:center;justify-content:space-between;padding:4px 0">
+              <span style="display:flex;align-items:center;gap:6px">
+                <span style="font-size:13px;color:var(--color-text-muted);width:18px">{{ idx + 1 }}</span>
+                <span :style="{ display:'inline-block', width:'10px', height:'10px', borderRadius:'50%', background:cat.color }"></span>
+                <span class="text-sm">{{ cat.name }}</span>
+              </span>
+              <span style="text-align:right">
+                <span class="text-sm" style="font-weight:600">¥{{ Utils.formatMoney(cat.amount) }}</span>
+                <span class="text-sm text-muted" style="margin-left:6px">{{ cat.percentage }}%</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OCR Loading Modal -->
+      <div v-if="ocrLoading" class="modal-overlay">
+        <div class="modal" style="max-width:360px">
+          <div class="modal-body" style="text-align:center;padding:var(--space-xl)">
+            <div style="font-size:40px;animation:spin 1s linear infinite;display:inline-block;margin-bottom:var(--space-md)">🔍</div>
+            <div style="font-size:var(--font-base);font-weight:600;margin-bottom:6px">正在识别截图...</div>
+            <div class="text-muted text-sm">提取金额、日期、分类信息</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OCR Result Modal -->
+      <div v-if="showOCRResult" class="modal-overlay" @click.self="showOCRResult = false">
+        <div class="modal">
+          <div class="modal-header">
+            <span class="modal-title">识别结果</span>
+            <button class="modal-close" @click="showOCRResult = false">✕</button>
+          </div>
+          <div class="modal-body">
+            <div v-if="ocrPreviewUrl" style="text-align:center;margin-bottom:var(--space-md)">
+              <img :src="ocrPreviewUrl" style="max-width:100%;max-height:200px;border-radius:var(--radius);border:1px solid var(--color-border)" />
+            </div>
+
+            <div v-if="ocrResult">
+              <div class="form-group">
+                <label class="form-label">识别类型</label>
+                <div class="type-toggle">
+                  <button :class="{ active: ocrForm.type === 'expense', expense: true }" @click="ocrForm.type = 'expense'">支出</button>
+                  <button :class="{ active: ocrForm.type === 'income', income: true }" @click="ocrForm.type = 'income'">收入</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">金额 <span v-if="ocrResult.amount" style="color:var(--color-success)">✓ 已识别</span></label>
+                <input type="number" class="form-input" v-model="ocrForm.amount" placeholder="0.00" step="0.01" min="0" />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">分类 <span v-if="ocrResult.category" style="color:var(--color-success)">✓ 已匹配</span></label>
+                  <select class="form-select" v-model="ocrForm.category">
+                    <option value="">请选择</option>
+                    <option v-for="cat in ocrCategoriesByType" :key="cat.name" :value="cat.name">
+                      {{ cat.icon }} {{ cat.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">日期 <span v-if="ocrResult.date" style="color:var(--color-success)">✓ 已识别</span></label>
+                  <input type="date" class="form-input" v-model="ocrForm.date" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">备注</label>
+                <textarea class="form-textarea" v-model="ocrForm.note" placeholder="可选..."></textarea>
+              </div>
+
+              <div v-if="!ocrResult.amount" style="padding:10px 14px;background:var(--color-warning-light);border-radius:var(--radius);margin-bottom:var(--space-md)">
+                <div class="text-sm" style="color:var(--color-warning)">⚠️ 未能自动识别金额，请手动输入</div>
+              </div>
+
+              <!-- Recognized text preview -->
+              <details style="margin-top:var(--space-sm)">
+                <summary class="text-sm text-muted" style="cursor:pointer;padding:8px 0">查看识别原文</summary>
+                <div style="background:var(--color-surface-hover);padding:var(--space-md);border-radius:var(--radius);font-size:var(--font-xs);color:var(--color-text-muted);white-space:pre-wrap;max-height:150px;overflow-y:auto">{{ ocrResult.rawText }}</div>
+              </details>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" @click="showOCRResult = false">取消</button>
+            <button class="btn btn-secondary" @click="retryOCR">重新识别</button>
+            <button class="btn btn-primary" @click="saveOCRResult">保存记录</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add/Edit Modal -->
+      <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
+        <div class="modal">
+          <div class="modal-header">
+            <span class="modal-title">{{ editing ? '编辑记录' : '添加记录' }}</span>
+            <button class="modal-close" @click="closeModal">✕</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">类型</label>
+              <div class="type-toggle">
+                <button :class="{ active: form.type === 'expense', expense: true }" @click="form.type = 'expense'">支出</button>
+                <button :class="{ active: form.type === 'income', income: true }" @click="form.type = 'income'">收入</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">金额</label>
+              <input type="number" class="form-input" v-model="form.amount" placeholder="0.00" step="0.01" min="0" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">分类</label>
+                <select class="form-select" v-model="form.category">
+                  <option value="">请选择</option>
+                  <option v-for="cat in categoriesByType" :key="cat.name" :value="cat.name">
+                    {{ cat.icon }} {{ cat.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">日期</label>
+                <input type="date" class="form-input" v-model="form.date" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">备注</label>
+              <textarea class="form-textarea" v-model="form.note" placeholder="可选..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" @click="closeModal">取消</button>
+            <button class="btn btn-primary" @click="saveTransaction">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+
+  setup() {
+    const { ref, computed } = Vue;
+    const currentMonth = ref(Utils.currentMonth());
+    const filterCategory = ref('');
+    const filterType = ref('');
+    const showModal = ref(false);
+    const editing = ref(false);
+    const form = ref({ type: 'expense', amount: '', category: '', date: Utils.today(), note: '' });
+
+    // OCR related state
+    const ocrFileInput = ref(null);
+    const ocrLoading = ref(false);
+    const showOCRResult = ref(false);
+    const ocrResult = ref(null);
+    const ocrPreviewUrl = ref('');
+    const ocrForm = ref({ type: 'expense', amount: '', category: '', date: Utils.today(), note: '' });
+    const lastOCRFile = ref(null);
+
+    const allCategories = computed(() => Store.getAllCategoriesForModule('accounting'));
+
+    const categoriesByType = computed(() => {
+      return allCategories.value.filter(c => c.type === form.value.type);
+    });
+
+    const ocrCategoriesByType = computed(() => {
+      return allCategories.value.filter(c => c.type === ocrForm.value.type);
+    });
+
+    const monthTxns = computed(() => {
+      return Store.state.transactions
+        .filter(t => Utils.getMonthString(t.date) === currentMonth.value)
+        .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    });
+
+    const filteredTransactions = computed(() => {
+      let list = monthTxns.value;
+      if (filterCategory.value) list = list.filter(t => t.category === filterCategory.value);
+      if (filterType.value) list = list.filter(t => t.type === filterType.value);
+      return list;
+    });
+
+    const summary = computed(() => Store.getMonthlySummary(currentMonth.value));
+
+    const displayMonth = computed(() => {
+      const [y, m] = currentMonth.value.split('-');
+      return `${y}年${parseInt(m)}月`;
+    });
+
+    const currentYear = computed(() => currentMonth.value.split('-')[0]);
+    const yearlySummary = computed(() => Store.getYearlySummary(currentYear.value));
+
+    const expenseByCategory = computed(() => Store.getCategoryBreakdown(currentMonth.value, 'expense'));
+    const incomeByCategory = computed(() => Store.getCategoryBreakdown(currentMonth.value, 'income'));
+    const yearlyExpenseByCategory = computed(() => Store.getYearlyCategoryBreakdown(currentYear.value, 'expense'));
+    const yearlyIncomeByCategory = computed(() => Store.getYearlyCategoryBreakdown(currentYear.value, 'income'));
+
+    const todaySummary = computed(() => {
+      const today = Utils.today();
+      const txns = Store.state.transactions.filter(t => t.date === today);
+      return {
+        income: txns.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0),
+        expense: txns.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0),
+      };
+    });
+
+    const todayDateStr = computed(() => {
+      const d = new Date();
+      return `${d.getFullYear()}年${String(d.getMonth() + 1).padStart(2, '0')}月${String(d.getDate()).padStart(2, '0')}日`;
+    });
+
+    const monthRangeStr = computed(() => {
+      const [y, m] = currentMonth.value.split('-');
+      const days = new Date(parseInt(y), parseInt(m), 0).getDate();
+      return `${parseInt(m)}月01日-${parseInt(m)}月${days}日`;
+    });
+
+    const incomeCount = computed(() => monthTxns.value.filter(t => t.type === 'income').length);
+
+    function generatePieSegments(categories, total) {
+      if (total <= 0 || categories.length === 0) return [];
+      const r = 80, cx = 100, cy = 100;
+      let angle = -Math.PI / 2;
+      return categories.map(cat => {
+        const portion = cat.amount / total;
+        const endAngle = angle + portion * 2 * Math.PI;
+        const x1 = cx + r * Math.cos(angle);
+        const y1 = cy + r * Math.sin(angle);
+        const x2 = cx + r * Math.cos(endAngle);
+        const y2 = cy + r * Math.sin(endAngle);
+        const largeArc = portion > 0.5 ? 1 : 0;
+        const path = `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`;
+        angle = endAngle;
+        return { path, color: cat.color, name: cat.name, amount: cat.amount };
+      });
+    }
+
+    const expensePieSegments = computed(() => generatePieSegments(expenseByCategory.value, summary.value.expense));
+    const incomePieSegments = computed(() => generatePieSegments(incomeByCategory.value, summary.value.income));
+    const yearlyExpensePieSegments = computed(() => generatePieSegments(yearlyExpenseByCategory.value, yearlySummary.value.expense));
+    const yearlyIncomePieSegments = computed(() => generatePieSegments(yearlyIncomeByCategory.value, yearlySummary.value.income));
+
+    function prevMonth() {
+      const [y, m] = currentMonth.value.split('-').map(Number);
+      const d = new Date(y, m - 2, 1);
+      currentMonth.value = Utils.getMonthString(d);
+    }
+
+    function nextMonth() {
+      const [y, m] = currentMonth.value.split('-').map(Number);
+      const d = new Date(y, m, 1);
+      currentMonth.value = Utils.getMonthString(d);
+    }
+
+    function openAddModal() {
+      editing.value = false;
+      form.value = { type: 'expense', amount: '', category: '', date: Utils.today(), note: '' };
+      showModal.value = true;
+    }
+
+    function openEditModal(t) {
+      editing.value = true;
+      form.value = { ...t };
+      showModal.value = true;
+    }
+
+    function closeModal() {
+      showModal.value = false;
+    }
+
+    async function saveTransaction() {
+      if (!form.value.amount || Number(form.value.amount) <= 0) {
+        alert('请输入金额');
+        return;
+      }
+      const data = {
+        type: form.value.type,
+        amount: Number(form.value.amount),
+        category: form.value.category,
+        date: form.value.date,
+        note: form.value.note,
+      };
+      if (editing.value) {
+        await Store.updateTransaction(form.value.id, data);
+      } else {
+        await Store.addTransaction(data);
+      }
+      closeModal();
+    }
+
+    async function deleteTxn(t) {
+      if (confirm('确定删除这条记录吗？')) {
+        await Store.deleteTransaction(t.id);
+      }
+    }
+
+    function getCategoryColor(name) {
+      return Store.getCategoryColor('accounting', name);
+    }
+
+    function getCategoryIcon(name) {
+      const cat = allCategories.value.find(c => c.name === name);
+      return cat ? cat.icon : '📝';
+    }
+
+    // ===== OCR Functions =====
+    function triggerOCRImport() {
+      ocrFileInput.value?.click();
+    }
+
+    async function handleOCRImage(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      lastOCRFile.value = file;
+      event.target.value = '';
+      await processOCR(file);
+    }
+
+    async function processOCR(file) {
+      ocrLoading.value = true;
+      ocrPreviewUrl.value = URL.createObjectURL(file);
+
+      try {
+        const text = await OCRUtil.recognize(file);
+        const parsed = OCRUtil.parseReceipt(text);
+        ocrResult.value = parsed;
+
+        ocrForm.value = {
+          type: parsed.type || 'expense',
+          amount: parsed.amount || '',
+          category: parsed.category || '',
+          date: parsed.date || Utils.today(),
+          note: parsed.merchant ? '识别自: ' + parsed.merchant : '',
+        };
+
+        ocrLoading.value = false;
+        showOCRResult.value = true;
+      } catch (e) {
+        ocrLoading.value = false;
+        alert('识别失败，请重试或手动输入\n错误: ' + e.message);
+      }
+    }
+
+    async function retryOCR() {
+      if (!lastOCRFile.value) return;
+      showOCRResult.value = false;
+      await processOCR(lastOCRFile.value);
+    }
+
+    async function saveOCRResult() {
+      if (!ocrForm.value.amount || Number(ocrForm.value.amount) <= 0) {
+        alert('请输入金额');
+        return;
+      }
+      const data = {
+        type: ocrForm.value.type,
+        amount: Number(ocrForm.value.amount),
+        category: ocrForm.value.category,
+        date: ocrForm.value.date,
+        note: ocrForm.value.note,
+      };
+      await Store.addTransaction(data);
+      showOCRResult.value = false;
+      if (ocrPreviewUrl.value) {
+        URL.revokeObjectURL(ocrPreviewUrl.value);
+        ocrPreviewUrl.value = '';
+      }
+    }
+
+    return {
+      Utils, currentMonth, currentYear, filterCategory, filterType, showModal, editing, form,
+      allCategories, categoriesByType, filteredTransactions, summary, displayMonth,
+      yearlySummary, expenseByCategory, incomeByCategory,
+      yearlyExpenseByCategory, yearlyIncomeByCategory,
+      expensePieSegments, incomePieSegments, yearlyExpensePieSegments, yearlyIncomePieSegments,
+      todaySummary, todayDateStr, monthRangeStr, incomeCount,
+      prevMonth, nextMonth, openAddModal, openEditModal, closeModal, saveTransaction, deleteTxn,
+      getCategoryColor, getCategoryIcon,
+      ocrFileInput, ocrLoading, showOCRResult, ocrResult, ocrPreviewUrl, ocrForm,
+      ocrCategoriesByType, triggerOCRImport, handleOCRImage, retryOCR, saveOCRResult,
+    };
+  }
+};
+  </script>
+  <script>
+    /**
+ * 日历模块 — 月视图 + 事件管理
+ */
+window.CalendarComponent = {
+  template: `
+    <div class="calendar-module">
+      <div class="page-header">
+        <h1 class="page-title">日历</h1>
+        <button class="btn btn-primary" @click="openAddModal(selectedDate)">
+          <span>+</span> 添加事件
+        </button>
+      </div>
+
+      <!-- Month navigation -->
+      <div class="filter-bar">
+        <div class="month-picker">
+          <button class="btn-ghost btn-icon" @click="prevMonth">‹</button>
+          <span class="month-picker-label">{{ displayMonth }}</span>
+          <button class="btn-ghost btn-icon" @click="nextMonth">›</button>
+        </div>
+        <button class="btn btn-secondary btn-sm" @click="goToday">今天</button>
+      </div>
+
+      <div style="display:flex;gap:var(--space-lg);align-items:flex-start;flex-wrap:wrap">
+        <!-- Calendar grid -->
+        <div style="flex:1;min-width:300px">
+          <div class="calendar-grid">
+            <div class="calendar-weekday" v-for="(d, i) in weekdayNames" :key="d"
+              :class="{ 'weekday-weekend': i === 5 || i === 6 }">{{ d }}</div>
+            <div v-for="(week, wi) in monthMatrix" :key="wi" style="display:contents">
+              <div
+                v-for="(day, di) in week"
+                :key="wi + '-' + di"
+                class="calendar-day"
+                :class="{
+                  'other-month': !day.isCurrentMonth,
+                  'today': day.dateStr === todayStr,
+                  'weekend': di === 5 || di === 6,
+                  'holiday': Utils.getHoliday(day.dateStr),
+                  'workday-override': Utils.isWorkday(day.dateStr)
+                }"
+                @click="selectDate(day.dateStr)"
+              >
+                <div class="calendar-day-num-row">
+                  <span class="calendar-day-num">{{ day.day }}</span>
+                  <span v-if="Utils.getHoliday(day.dateStr)" class="holiday-tag">{{ Utils.getHoliday(day.dateStr) }}</span>
+                  <span v-else-if="Utils.isWorkday(day.dateStr)" class="work-tag">补班</span>
+                </div>
+                <div v-for="e in getEventsForDate(day.dateStr)" :key="e.id" class="calendar-event-label"
+                  :style="{ background: getCategoryColor(e.category) + '22', color: getCategoryColor(e.category) }">
+                  {{ e.time ? e.time + ' ' : '' }}{{ e.title }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Selected day events -->
+        <div style="width:320px;max-width:100%">
+          <div class="card">
+            <div class="card-header">
+              <span>{{ formatDateLabel(selectedDate) }}</span>
+              <button class="btn btn-primary btn-sm" @click="openAddModal(selectedDate)">+ 添加</button>
+            </div>
+            <div class="card-body" style="padding:0">
+              <div v-if="selectedDayEvents.length === 0" class="empty-state">
+                <div class="empty-icon">📅</div>
+                <div class="empty-text">这一天没有安排</div>
+              </div>
+              <div v-else>
+                <div class="list-item" v-for="e in selectedDayEvents" :key="e.id">
+                  <div class="list-item-icon" :style="{ background: getCategoryColor(e.category) + '22', color: getCategoryColor(e.category) }">
+                    {{ getCategoryIcon(e.category) }}
+                  </div>
+                  <div class="list-item-content">
+                    <div class="list-item-title">{{ e.title }}</div>
+                    <div class="list-item-sub">
+                      {{ e.time || '全天' }}{{ e.category ? ' · ' + e.category : '' }}
+                    </div>
+                    <div v-if="e.note" class="list-item-sub">{{ e.note }}</div>
+                  </div>
+                  <div class="list-item-actions">
+                    <button class="btn-ghost btn-icon" @click="openEditModal(e)">✏️</button>
+                    <button class="btn-ghost btn-icon" @click="deleteEvent(e)">🗑</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add/Edit Modal -->
+      <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
+        <div class="modal">
+          <div class="modal-header">
+            <span class="modal-title">{{ editing ? '编辑事件' : '添加事件' }}</span>
+            <button class="modal-close" @click="closeModal">✕</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">标题</label>
+              <input type="text" class="form-input" v-model="form.title" placeholder="事件名称" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">日期</label>
+                <input type="date" class="form-input" v-model="form.date" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">时间</label>
+                <input type="time" class="form-input" v-model="form.time" />
+                <div class="form-hint">留空表示全天事件</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">分类</label>
+              <select class="form-select" v-model="form.category">
+                <option value="">请选择</option>
+                <option v-for="cat in categories" :key="cat.name" :value="cat.name">
+                  {{ cat.icon }} {{ cat.name }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">备注</label>
+              <textarea class="form-textarea" v-model="form.note" placeholder="可选..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" @click="closeModal">取消</button>
+            <button class="btn btn-primary" @click="saveEvent">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+
+  setup() {
+    const { ref, computed } = Vue;
+    const today = new Date();
+    const viewYear = ref(today.getFullYear());
+    const viewMonth = ref(today.getMonth());
+    const selectedDate = ref(Utils.today());
+    const showModal = ref(false);
+    const editing = ref(false);
+    const form = ref({ title: '', date: Utils.today(), time: '', category: '', note: '' });
+
+    const weekdayNames = ['一', '二', '三', '四', '五', '六', '日'];
+    const todayStr = Utils.today();
+
+    const monthMatrix = computed(() => Utils.getMonthMatrix(viewYear.value, viewMonth.value));
+    const displayMonth = computed(() => `${viewYear.value}年${viewMonth.value + 1}月`);
+    const categories = computed(() => Store.getAllCategoriesForModule('calendar'));
+
+    const selectedDayEvents = computed(() => {
+      return Store.state.events
+        .filter(e => e.date === selectedDate.value)
+        .sort((a, b) => (a.time || '99:99').localeCompare(b.time || '99:99'));
+    });
+
+    function getEventsForDate(dateStr) {
+      return Store.state.events
+        .filter(e => e.date === dateStr)
+        .sort((a, b) => (a.time || '99:99').localeCompare(b.time || '99:99'))
+        .slice(0, 3);
+    }
+
+    function selectDate(dateStr) {
+      selectedDate.value = dateStr;
+    }
+
+    function prevMonth() {
+      if (viewMonth.value === 0) {
+        viewMonth.value = 11;
+        viewYear.value--;
+      } else {
+        viewMonth.value--;
+      }
+    }
+
+    function nextMonth() {
+      if (viewMonth.value === 11) {
+        viewMonth.value = 0;
+        viewYear.value++;
+      } else {
+        viewMonth.value++;
+      }
+    }
+
+    function goToday() {
+      const now = new Date();
+      viewYear.value = now.getFullYear();
+      viewMonth.value = now.getMonth();
+      selectedDate.value = Utils.today();
+    }
+
+    function formatDateLabel(dateStr) {
+      const d = Utils.parseDate(dateStr);
+      const dayOfWeek = (d.getDay() + 6) % 7;
+      return `${d.getMonth() + 1}月${d.getDate()}日 周${weekdayNames[dayOfWeek]}`;
+    }
+
+    function openAddModal(date) {
+      editing.value = false;
+      form.value = { title: '', date: date || Utils.today(), time: '', category: '', note: '' };
+      showModal.value = true;
+    }
+
+    function openEditModal(e) {
+      editing.value = true;
+      form.value = { ...e };
+      showModal.value = true;
+    }
+
+    function closeModal() {
+      showModal.value = false;
+    }
+
+    async function saveEvent() {
+      if (!form.value.title.trim()) {
+        alert('请输入事件标题');
+        return;
+      }
+      const data = {
+        title: form.value.title.trim(),
+        date: form.value.date,
+        time: form.value.time || '',
+        category: form.value.category,
+        note: form.value.note,
+      };
+      if (editing.value) {
+        await Store.updateEvent(form.value.id, data);
+      } else {
+        await Store.addEvent(data);
+      }
+      selectedDate.value = form.value.date;
+      closeModal();
+    }
+
+    async function deleteEvent(e) {
+      if (confirm('确定删除这个事件吗？')) {
+        await Store.deleteEvent(e.id);
+      }
+    }
+
+    function getCategoryColor(name) {
+      return Store.getCategoryColor('calendar', name);
+    }
+
+    function getCategoryIcon(name) {
+      const cat = categories.value.find(c => c.name === name);
+      return cat ? cat.icon : '📌';
+    }
+
+    return {
+      Utils, viewYear, viewMonth, selectedDate, showModal, editing, form,
+      weekdayNames, todayStr, monthMatrix, displayMonth, categories,
+      selectedDayEvents, getEventsForDate, selectDate,
+      prevMonth, nextMonth, goToday, formatDateLabel,
+      openAddModal, openEditModal, closeModal, saveEvent, deleteEvent,
+      getCategoryColor, getCategoryIcon,
+    };
+  }
+};
+  </script>
+  <script>
+    /**
+ * 健身计划模块 — 按星期排计划 + 今日计划 + 打勾完成
+ */
+window.FitnessComponent = {
+  template: `
+    <div class="fitness-module">
+      <div class="page-header">
+        <h1 class="page-title">健身计划</h1>
+        <button class="btn btn-primary" @click="openAddModal()">
+          <span>+</span> 添加动作
+        </button>
+        <button class="btn btn-secondary" @click="generateWeeklyPlan" style="margin-left:8px">
+          🏋️ 生成健身周计划
+        </button>
+      </div>
+
+      <!-- Today's plan highlight -->
+      <div v-if="todayExercises.length > 0" class="card mb-lg">
+        <div class="card-header">
+          <span>🏋️ 今日计划 · {{ Utils.getDayName(todayDay) }}</span>
+          <span class="text-muted text-sm">{{ completedCount }}/{{ todayExercises.length }} 完成</span>
+        </div>
+        <div class="card-body" style="padding:var(--space-md)">
+          <div v-for="ex in todayExercises" :key="ex.id"
+            class="exercise-item" :class="{ 'exercise-completed': isCompleted(ex) }">
+            <div class="exercise-checkbox"
+              :class="{ checked: isCompleted(ex) }"
+              @click="toggleComplete(ex)">
+            </div>
+            <div class="exercise-info">
+              <div class="exercise-name">{{ ex.name }}</div>
+            </div>
+            <div class="list-item-actions">
+              <button class="btn-ghost btn-icon" @click="openEditModal(ex)">✏️</button>
+              <button class="btn-ghost btn-icon" @click="deleteExercise(ex)">🗑</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day tabs -->
+      <div class="fitness-day-tabs">
+        <button v-for="(dow, idx) in dayOrder" :key="idx"
+          class="fitness-day-tab"
+          :class="{ active: selectedDay === dow, 'today-tab': dow === todayDay }"
+          @click="selectedDay = dow">
+          <span style="font-size:14px;font-weight:600">{{ Utils.getDayName(dow) }}</span>
+          <span v-if="dow === todayDay" style="font-size:10px">·今天</span>
+          <span class="tab-theme" style="font-size:10px;color:var(--color-text-secondary);display:block;margin-top:2px">{{ dayThemes[dow] }}</span>
+        </button>
+      </div>
+
+      <!-- Selected day exercises -->
+      <div class="card">
+        <div class="card-header">
+          <span>{{ Utils.getDayName(selectedDay) }} · {{ dayThemes[selectedDay] }}</span>
+          <span class="text-muted text-sm">{{ dayExercises.length }} 个动作</span>
+        </div>
+        <div class="card-body" style="padding:var(--space-md)">
+          <div v-if="dayExercises.length === 0" class="empty-state">
+            <div class="empty-icon">💪</div>
+            <div class="empty-text">{{ Utils.getDayName(selectedDay) }}还没有计划，点击"添加动作"</div>
+          </div>
+          <div v-else>
+            <div v-for="ex in dayExercises" :key="ex.id"
+              class="exercise-item" :class="{ 'exercise-completed': isCompleted(ex) }">
+              <div class="exercise-checkbox"
+                :class="{ checked: isCompleted(ex) }"
+                @click="toggleComplete(ex)">
+              </div>
+              <div class="exercise-info">
+                <div class="exercise-name">{{ ex.name }}</div>
+              </div>
+              <div class="list-item-actions">
+                <button class="btn-ghost btn-icon" @click="openEditModal(ex)">✏️</button>
+                <button class="btn-ghost btn-icon" @click="deleteExercise(ex)">🗑</button>
+              </div>
+            </div>
+            <div class="fitness-day-desc" style="margin-top:var(--space-md);padding:var(--space-sm) var(--space-md);background:var(--color-bg-secondary);border-radius:var(--radius);font-size:var(--font-sm);color:var(--color-text-secondary)">
+              {{ dayDescription }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add/Edit Modal -->
+      <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
+        <div class="modal">
+          <div class="modal-header">
+            <span class="modal-title">{{ editing ? '编辑动作' : '添加动作' }}</span>
+            <button class="modal-close" @click="closeModal">✕</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">动作名称</label>
+              <input type="text" class="form-input" v-model="form.name" placeholder="如：卧推、深蹲、引体向上" list="exercise-presets" />
+              <datalist id="exercise-presets">
+                <option v-for="ex in presetExercises" :key="ex" :value="ex"></option>
+              </datalist>
+            </div>
+            <div class="form-group">
+              <label class="form-label">训练日</label>
+              <select class="form-select" v-model="form.dayOfWeek">
+                <option v-for="(dow, idx) in dayOrder" :key="idx" :value="String(dow)">{{ Utils.getDayName(dow) }}</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">组数</label>
+                <input type="number" class="form-input" v-model="form.sets" min="1" placeholder="如 3" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">次数</label>
+                <input type="number" class="form-input" v-model="form.reps" min="1" placeholder="如 12" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">休息(秒)</label>
+                <input type="number" class="form-input" v-model="form.restTime" min="0" placeholder="如 60" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">重量(kg)</label>
+                <input type="number" class="form-input" v-model="form.weight" min="0" step="0.5" placeholder="可选" />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" @click="closeModal">取消</button>
+            <button class="btn btn-primary" @click="saveExercise">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+
+  setup() {
+    const { ref, computed } = Vue;
+    const todayDay = new Date().getDay();
+    const selectedDay = ref(todayDay);
+    const showModal = ref(false);
+    const editing = ref(false);
+    const form = ref({ name: '', dayOfWeek: String(todayDay), sets: '', reps: '', restTime: '', weight: '' });
+
+    const dayOrder = [1, 2, 3, 4, 5, 6, 0];
+
+    const presetExercises = [
+      '卧推', '深蹲', '硬拉', '引体向上', '杠铃划船', '哑铃弯举',
+      '三头下压', '推举', '侧平举', '俯卧撑', '平板支撑', '卷腹',
+      '腿举', '腿弯举', '小腿提踵', '弓步蹲', '罗马尼亚硬拉',
+      '坐姿划船', '高位下拉', '飞鸟', '臂屈伸', '俄罗斯转体',
+      '跑步', '跳绳', '波比跳', '开合跳', '登山跑', '椭圆机',
+      '坐姿体前屈', '猫牛式', '鸽子式拉伸', '蝴蝶式拉伸'
+    ];
+
+    const todayExercises = computed(() => {
+      return Store.state.fitnessPlans
+        .filter(f => Number(f.dayOfWeek) === todayDay)
+        .sort((a, b) => (a.order || 0) - (b.order || 0));
+    });
+
+    const dayExercises = computed(() => {
+      return Store.state.fitnessPlans
+        .filter(f => Number(f.dayOfWeek) === selectedDay.value)
+        .sort((a, b) => (a.order || 0) - (b.order || 0));
+    });
+
+    const completedCount = computed(() => {
+      const today = Utils.today();
+      return todayExercises.value.filter(e => e.completedDate === today).length;
+    });
+
+    const dayThemes = {
+      1: '肩颈·古法',
+      2: '臀腿·刘畊宏',
+      3: '肩颈·古法',
+      4: '臀腿·哑铃',
+      5: '全身·刘畊宏+哑铃',
+      6: '休息日',
+      0: '休息日',
+    };
+
+    const dayDescriptions = {
+      1: '💪 锻炼肩颈：缓解久坐肩酸颈僵，改善圆肩驼背，放松上背部',
+      2: '🦵 锻炼臀腿：提升下肢力量，紧致臀型，增强核心稳定性',
+      3: '💪 锻炼肩颈：古法拉伸舒展，改善体态，促进肩颈血液循环',
+      4: '🦵 锻炼臀腿：哑铃负重训练，增强肌肉力量，塑造腿部线条',
+      5: '🔥 全身燃脂：肩颈+下肢组合，提高心肺功能，全身燃脂塑形',
+      6: '🧘 休息日：建议轻度拉伸或散步，让身体恢复',
+      0: '🧘 休息日：建议轻度拉伸或散步，让身体恢复',
+    };
+    const dayDescription = computed(() => dayDescriptions[selectedDay.value] || '');
+
+    function isCompleted(ex) {
+      return ex.completedDate === Utils.today();
+    }
+
+    async function toggleComplete(ex) {
+      const today = Utils.today();
+      const completed = ex.completedDate === today;
+      await Store.updateFitnessPlan(ex.id, {
+        completedDate: completed ? '' : today
+      });
+    }
+
+    function openAddModal() {
+      editing.value = false;
+      form.value = { name: '', dayOfWeek: String(selectedDay.value), sets: '', reps: '', restTime: '', weight: '' };
+      showModal.value = true;
+    }
+
+    function openEditModal(ex) {
+      editing.value = true;
+      form.value = { ...ex };
+      showModal.value = true;
+    }
+
+    function closeModal() {
+      showModal.value = false;
+    }
+
+    async function saveExercise() {
+      if (!form.value.name.trim()) {
+        alert('请输入动作名称');
+        return;
+      }
+      const data = {
+        name: form.value.name.trim(),
+        dayOfWeek: form.value.dayOfWeek,
+        sets: Number(form.value.sets) || 0,
+        reps: Number(form.value.reps) || 0,
+        restTime: Number(form.value.restTime) || 0,
+        weight: form.value.weight ? Number(form.value.weight) : 0,
+        completedDate: '',
+      };
+      if (editing.value) {
+        await Store.updateFitnessPlan(form.value.id, data);
+      } else {
+        await Store.addFitnessPlan(data);
+      }
+      closeModal();
+    }
+
+    async function deleteExercise(ex) {
+      if (confirm('确定删除这个动作吗？')) {
+        await Store.deleteFitnessPlan(ex.id);
+      }
+    }
+
+    async function generateWeeklyPlan() {
+      const existing = Store.state.fitnessPlans.filter(f => [1,2,3,4,5].includes(Number(f.dayOfWeek)));
+      if (existing.length > 0) {
+        if (!confirm('周一到周五已有健身计划，将自动去重并补充缺失的动作。继续？')) return;
+        const seen = new Set();
+        const toDelete = [];
+        for (const ex of existing) {
+          const key = `${ex.dayOfWeek}|${ex.name}`;
+          if (seen.has(key)) {
+            toDelete.push(ex);
+          } else {
+            seen.add(key);
+          }
+        }
+        for (const ex of toDelete) {
+          await Store.deleteFitnessPlan(ex.id);
+        }
+      }
+
+      function exerciseExists(dayOfWeek, name) {
+        return Store.state.fitnessPlans.some(f =>
+          Number(f.dayOfWeek) === dayOfWeek && f.name === name
+        );
+      }
+
+      // 周一：肩颈（古法健身）
+      const monday = [
+        { name: '颈部前后屈伸', sets: 3, reps: 15, restTime: 30, weight: 0 },
+        { name: '肩部环绕', sets: 3, reps: 20, restTime: 30, weight: 0 },
+        { name: '古法耸肩', sets: 3, reps: 20, restTime: 30, weight: 0 },
+        { name: '弹力带外旋', sets: 3, reps: 15, restTime: 45, weight: 0 },
+        { name: '猫牛式', sets: 3, reps: 10, restTime: 30, weight: 0 },
+      ];
+      // 周二：臀腿（刘畊宏健身）
+      const tuesday = [
+        { name: '刘畊宏开合跳', sets: 4, reps: 30, restTime: 30, weight: 0 },
+        { name: '刘畊宏深蹲', sets: 4, reps: 20, restTime: 40, weight: 0 },
+        { name: '刘畊宏弓步蹲', sets: 3, reps: 15, restTime: 40, weight: 0 },
+        { name: '臀桥', sets: 4, reps: 20, restTime: 30, weight: 0 },
+        { name: '侧抬腿', sets: 3, reps: 20, restTime: 30, weight: 0 },
+      ];
+      // 周三：肩颈（古法健身）
+      const wednesday = [
+        { name: '古法八段锦', sets: 1, reps: 1, restTime: 60, weight: 0 },
+        { name: '颈部侧屈', sets: 3, reps: 15, restTime: 30, weight: 0 },
+        { name: '古法扩胸', sets: 3, reps: 20, restTime: 30, weight: 0 },
+        { name: '坐姿划船（弹力带）', sets: 3, reps: 15, restTime: 45, weight: 0 },
+        { name: '小鸟式拉伸', sets: 3, reps: 10, restTime: 30, weight: 0 },
+      ];
+      // 周四：臀腿（哑铃）
+      const thursday = [
+        { name: '哑铃深蹲', sets: 4, reps: 15, restTime: 45, weight: 5 },
+        { name: '哑铃硬拉', sets: 4, reps: 12, restTime: 45, weight: 5 },
+        { name: '哑铃弓步蹲', sets: 3, reps: 12, restTime: 40, weight: 3 },
+        { name: '哑铃臀桥', sets: 4, reps: 15, restTime: 40, weight: 5 },
+        { name: '哑铃侧蹲', sets: 3, reps: 12, restTime: 40, weight: 3 },
+      ];
+      // 周五：肩颈+全身（刘畊宏）
+      const friday = [
+        { name: '刘畊宏踢腿', sets: 4, reps: 30, restTime: 30, weight: 0 },
+        { name: '刘畊宏摆臂', sets: 4, reps: 30, restTime: 30, weight: 0 },
+        { name: '哑铃推举', sets: 3, reps: 12, restTime: 45, weight: 3 },
+        { name: '哑铃侧平举', sets: 3, reps: 15, restTime: 40, weight: 2 },
+        { name: '平板支撑', sets: 3, reps: 30, restTime: 45, weight: 0 },
+      ];
+
+      const weekPlans = [
+        { day: 1, exercises: monday },
+        { day: 2, exercises: tuesday },
+        { day: 3, exercises: wednesday },
+        { day: 4, exercises: thursday },
+        { day: 5, exercises: friday },
+      ];
+
+      for (const wp of weekPlans) {
+        for (const ex of wp.exercises) {
+          if (exerciseExists(wp.day, ex.name)) continue;
+          await Store.addFitnessPlan({
+            name: ex.name,
+            dayOfWeek: String(wp.day),
+            sets: ex.sets,
+            reps: ex.reps,
+            restTime: ex.restTime,
+            weight: ex.weight,
+            completedDate: '',
+          });
+        }
+      }
+
+      selectedDay.value = 1;
+      alert('已生成周一到周五健身计划！\n\n周一·肩颈（古法）\n周二·臀腿（刘畊宏）\n周三·肩颈（古法）\n周四·臀腿（哑铃）\n周五·肩颈+全身（刘畊宏+哑铃）\n\n每天5个动作，约30分钟，可随时编辑或删除。');
+    }
+
+    return {
+      Utils, todayDay, selectedDay, showModal, editing, form,
+      dayOrder, presetExercises, todayExercises, dayExercises, completedCount, dayDescription, dayThemes,
+      isCompleted, toggleComplete,
+      openAddModal, openEditModal, closeModal, saveExercise, deleteExercise, generateWeeklyPlan,
+    };
+  }
+};
+  </script>
+  <script>
+    /**
+ * 饮食计划模块 — 按天排三餐+加餐 + 食物管理 + 复制计划
+ */
+window.DietComponent = {
+  template: `
+    <div class="diet-module">
+      <div class="page-header">
+        <h1 class="page-title">饮食计划</h1>
+        <button class="btn btn-primary" @click="openAddFood()">
+          <span>+</span> 添加食物
+        </button>
+        <button class="btn btn-secondary" @click="generateWeeklyPlan" style="margin-left:8px">
+          🍱 生成健康周计划
+        </button>
+      </div>
+
+      <!-- Weekday tabs -->
+      <div class="fitness-day-tabs">
+        <button v-for="(dow, idx) in dayOrder" :key="idx"
+          class="fitness-day-tab"
+          :class="{ active: selectedDay === dow, 'today-tab': dow === todayDay }"
+          @click="selectDayTab(dow)">
+          {{ Utils.getDayName(dow) }}
+          <span v-if="dow === todayDay" style="font-size:10px">·今天</span>
+        </button>
+      </div>
+
+      <!-- Date info + actions -->
+      <div class="filter-bar">
+        <span class="text-muted text-sm">{{ dateLabel }}</span>
+        <button class="btn btn-secondary btn-sm" @click="goToday">回到今天</button>
+        <button class="btn btn-secondary btn-sm" @click="showCopyModal = true">📋 复制到</button>
+        <button class="btn btn-secondary btn-sm" @click="autoRotate">🔀 自动变动</button>
+      </div>
+
+      <!-- Total calories -->
+      <div class="summary-bar" v-if="totalCalories > 0">
+        <div class="summary-item">
+          <span class="summary-item-label">今日总热量</span>
+          <span class="summary-item-value" style="color:var(--color-primary)">{{ totalCalories }} kcal</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-item-label">食物数</span>
+          <span class="summary-item-value">{{ allFoods.length }}</span>
+        </div>
+      </div>
+
+      <!-- Meal sections -->
+      <div v-for="meal in mealTypes" :key="meal.key" class="meal-section">
+        <div class="meal-header">
+          <span class="meal-icon">{{ meal.icon }}</span>
+          {{ meal.label }}
+          <span v-if="mealFoods(meal.key).length > 0" class="text-muted" style="font-weight:400">
+            · {{ mealCalories(meal.key) }} kcal
+          </span>
+        </div>
+        <div class="card">
+          <div class="card-body" style="padding:var(--space-sm)">
+            <div v-if="mealFoods(meal.key).length === 0" class="empty-state" style="padding:var(--space-md)">
+              <div class="empty-text text-sm">还没有添加食物</div>
+            </div>
+            <div v-else>
+              <div class="food-item" v-for="f in mealFoods(meal.key)" :key="f.id">
+                <span class="food-name">{{ f.name }}</span>
+                <span class="food-portion">{{ f.portion }}{{ f.portion ? ' · ' : '' }}{{ f.calories }} kcal</span>
+                <div class="list-item-actions">
+                  <button class="btn-ghost btn-icon" @click="openEditFood(f)">✏️</button>
+                  <button class="btn-ghost btn-icon" @click="deleteFood(f)">🗑</button>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-ghost btn-sm" @click="openAddFood(meal.key)" style="margin-top:4px">
+              + 添加{{ meal.label }}食物
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add/Edit Food Modal -->
+      <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
+        <div class="modal">
+          <div class="modal-header">
+            <span class="modal-title">{{ editing ? '编辑食物' : '添加食物' }}</span>
+            <button class="modal-close" @click="closeModal">✕</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">食物名称</label>
+              <input type="text" class="form-input" v-model="form.name" placeholder="如：鸡胸肉、米饭、鸡蛋" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">餐次</label>
+                <select class="form-select" v-model="form.mealType">
+                  <option v-for="m in mealTypes" :key="m.key" :value="m.key">{{ m.icon }} {{ m.label }}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">份量</label>
+                <input type="text" class="form-input" v-model="form.portion" placeholder="如：1碗、200g" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">热量 (kcal)</label>
+              <input type="number" class="form-input" v-model="form.calories" min="0" placeholder="0" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" @click="closeModal">取消</button>
+            <button class="btn btn-primary" @click="saveFood">保存</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copy Day Modal -->
+      <div v-if="showCopyModal" class="modal-overlay" @click.self="showCopyModal = false">
+        <div class="modal">
+          <div class="modal-header">
+            <span class="modal-title">复制 {{ dateLabel }} 的饮食到</span>
+            <button class="modal-close" @click="showCopyModal = false">✕</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">目标日期</label>
+              <input type="date" class="form-input" v-model="copyTargetDate" />
+            </div>
+            <div class="form-hint">将当天所有餐次的食物复制到目标日期，目标日期原有食物会保留</div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" @click="showCopyModal = false">取消</button>
+            <button class="btn btn-primary" @click="copyDay">复制</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+
+  setup() {
+    const { ref, computed } = Vue;
+    const todayDay = new Date().getDay();
+    const selectedDay = ref(todayDay);
+    const selectedDate = ref(Utils.today());
+    const showModal = ref(false);
+    const showCopyModal = ref(false);
+    const copyTargetDate = ref(Utils.today());
+    const editing = ref(false);
+    const form = ref({ name: '', mealType: 'breakfast', portion: '', calories: '' });
+
+    const dayOrder = [1, 2, 3, 4, 5, 6, 0];
+
+    function getDateForDayOfWeek(dow) {
+      const today = new Date();
+      const currentDow = today.getDay();
+      let diff = dow - currentDow;
+      const d = new Date(today);
+      d.setDate(today.getDate() + diff);
+      return Utils.formatDate(d);
+    }
+
+    function selectDayTab(dow) {
+      selectedDay.value = dow;
+      selectedDate.value = getDateForDayOfWeek(dow);
+    }
+
+    const mealTypes = [
+      { key: 'breakfast', label: '早餐', icon: '🌅' },
+      { key: 'lunch', label: '午餐', icon: '☀️' },
+      { key: 'dinner', label: '晚餐', icon: '🌙' },
+      { key: 'snack', label: '下午茶', icon: '🍎' },
+    ];
+
+    const allFoods = computed(() => {
+      return Store.state.dietPlans.filter(d => d.date === selectedDate.value);
+    });
+
+    const totalCalories = computed(() => {
+      return allFoods.value.reduce((sum, f) => sum + (Number(f.calories) || 0), 0);
+    });
+
+    const dateLabel = computed(() => {
+      const d = Utils.parseDate(selectedDate.value);
+      const days = ['日', '一', '二', '三', '四', '五', '六'];
+      const isToday = selectedDate.value === Utils.today();
+      return `${d.getMonth() + 1}月${d.getDate()}日 周${days[d.getDay()]}${isToday ? ' · 今天' : ''}`;
+    });
+
+    function mealFoods(mealType) {
+      return allFoods.value.filter(f => f.mealType === mealType);
+    }
+
+    function mealCalories(mealType) {
+      return mealFoods(mealType).reduce((sum, f) => sum + (Number(f.calories) || 0), 0);
+    }
+
+    function prevDay() {
+      const d = Utils.parseDate(selectedDate.value);
+      d.setDate(d.getDate() - 1);
+      selectedDate.value = Utils.formatDate(d);
+    }
+
+    function nextDay() {
+      const d = Utils.parseDate(selectedDate.value);
+      d.setDate(d.getDate() + 1);
+      selectedDate.value = Utils.formatDate(d);
+    }
+
+    function goToday() {
+      selectedDate.value = Utils.today();
+    }
+
+    function openAddFood(mealType) {
+      editing.value = false;
+      const mt = mealType || 'breakfast';
+      form.value = { name: '', mealType: mt, portion: '', calories: '' };
+      showModal.value = true;
+    }
+
+    function openEditFood(f) {
+      editing.value = true;
+      form.value = { ...f };
+      showModal.value = true;
+    }
+
+    function closeModal() {
+      showModal.value = false;
+    }
+
+    async function saveFood() {
+      if (!form.value.name.trim()) {
+        alert('请输入食物名称');
+        return;
+      }
+      const data = {
+        name: form.value.name.trim(),
+        mealType: form.value.mealType,
+        portion: form.value.portion || '',
+        calories: Number(form.value.calories) || 0,
+        date: selectedDate.value,
+      };
+      if (editing.value) {
+        await Store.updateDietPlan(form.value.id, data);
+      } else {
+        await Store.addDietPlan(data);
+      }
+      closeModal();
+    }
+
+    async function deleteFood(f) {
+      if (confirm('确定删除这个食物吗？')) {
+        await Store.deleteDietPlan(f.id);
+      }
+    }
+
+    async function copyDay() {
+      const sourceFoods = allFoods.value;
+      if (sourceFoods.length === 0) {
+        alert('当天没有食物可复制');
+        return;
+      }
+      for (const food of sourceFoods) {
+        await Store.addDietPlan({
+          name: food.name,
+          mealType: food.mealType,
+          portion: food.portion,
+          calories: food.calories,
+          date: copyTargetDate.value,
+        });
+      }
+      showCopyModal.value = false;
+      selectedDate.value = copyTargetDate.value;
+    }
+
+    async function autoRotate() {
+      const today = new Date();
+      const dayOfWeek = today.getDay();
+      const monday = new Date(today);
+      const diff = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+      monday.setDate(today.getDate() + diff);
+
+      const weekDates = [];
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(monday);
+        d.setDate(monday.getDate() + i);
+        weekDates.push(Utils.formatDate(d));
+      }
+
+      const allPlans = weekDates.map(date =>
+        Store.state.dietPlans.filter(d => d.date === date)
+      );
+
+      const nonEmpty = allPlans.filter(arr => arr.length > 0);
+      if (nonEmpty.length < 2) {
+        alert('至少需要两天有饮食计划才能变动');
+        return;
+      }
+
+      if (!confirm('将本周饮食计划轮换变动一天（周一的菜移到周二，周二的移到周三…周日的移到周一），确定吗？')) return;
+
+      const newOrder = [allPlans[6], allPlans[0], allPlans[1], allPlans[2], allPlans[3], allPlans[4], allPlans[5]];
+
+      for (let i = 0; i < 7; i++) {
+        const targetDate = weekDates[i];
+        for (const food of Store.state.dietPlans.filter(d => d.date === weekDates[i])) {
+          await Store.deleteDietPlan(food.id);
+        }
+      }
+
+      for (let i = 0; i < 7; i++) {
+        const targetDate = weekDates[i];
+        const sourceFoods = newOrder[i];
+        for (const food of sourceFoods) {
+          await Store.addDietPlan({
+            name: food.name,
+            mealType: food.mealType,
+            portion: food.portion,
+            calories: food.calories,
+            date: targetDate,
+          });
+        }
+      }
+
+      selectedDate.value = getDateForDayOfWeek(selectedDay.value);
+      alert('饮食计划已自动变动！每天的计划向后轮换了一天。');
+    }
+
+    async function generateWeeklyPlan() {
+      const today = new Date();
+      const dayOfWeek = today.getDay();
+      const monday = new Date(today);
+      const diff = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+      monday.setDate(today.getDate() + diff);
+
+      const weekDates = [];
+      for (let i = 0; i < 5; i++) {
+        const d = new Date(monday);
+        d.setDate(monday.getDate() + i);
+        weekDates.push(Utils.formatDate(d));
+      }
+
+      const existing = Store.state.dietPlans.filter(d => weekDates.includes(d.date));
+      if (existing.length > 0) {
+        if (!confirm('本周已有饮食计划，将自动去重并补充缺失的食物。继续？')) return;
+      }
+
+      // Deduplicate existing diet plans for this week (keep only one per date+mealType+name)
+      const seen = new Set();
+      const toDelete = [];
+      for (const food of existing) {
+        const key = `${food.date}|${food.mealType}|${food.name}`;
+        if (seen.has(key)) {
+          toDelete.push(food);
+        } else {
+          seen.add(key);
+        }
+      }
+      for (const food of toDelete) {
+        await Store.deleteDietPlan(food.id);
+      }
+
+      const allMeals = ['breakfast', 'lunch', 'dinner', 'snack'];
+      function foodExists(date, mealType, name) {
+        return Store.state.dietPlans.some(d =>
+          d.date === date && d.mealType === mealType && d.name === name
+        );
+      }
+
+      const plan = [
+        {
+          breakfast: [
+            { name: '紫薯粥', portion: '1碗', calories: 180 },
+            { name: '蓝莓', portion: '50g', calories: 30 },
+            { name: '水煮蛋', portion: '1个', calories: 70 },
+            { name: '牛奶', portion: '200ml', calories: 130 },
+          ],
+          lunch: [
+            { name: '鸡胸肉糙米饭', portion: '1碗', calories: 320 },
+            { name: '清炒西兰花', portion: '150g', calories: 80 },
+            { name: '番茄蛋汤', portion: '1碗', calories: 60 },
+          ],
+          dinner: [
+            { name: '香煎鸡胸', portion: '150g', calories: 200 },
+            { name: '蔬菜沙拉', portion: '1份', calories: 120 },
+            { name: '杂粮饭', portion: '半碗', calories: 100 },
+          ],
+          snack: [
+            { name: '苹果', portion: '1个', calories: 80 },
+            { name: '老白茶', portion: '1杯', calories: 0 },
+          ],
+        },
+        {
+          breakfast: [
+            { name: '玉米发糕', portion: '1块', calories: 160 },
+            { name: '牛油果', portion: '半个', calories: 160 },
+            { name: '豆浆', portion: '300ml', calories: 90 },
+            { name: '水煮蛋', portion: '1个', calories: 70 },
+          ],
+          lunch: [
+            { name: '牛肉番茄意面', portion: '1盘', calories: 420 },
+            { name: '蔬菜汤', portion: '1碗', calories: 60 },
+            { name: '拌黄瓜', portion: '100g', calories: 40 },
+          ],
+          dinner: [
+            { name: '虾仁豆腐', portion: '200g', calories: 180 },
+            { name: '紫菜蛋花汤', portion: '1碗', calories: 80 },
+            { name: '蒸南瓜', portion: '100g', calories: 40 },
+          ],
+          snack: [
+            { name: '草莓', portion: '100g', calories: 32 },
+            { name: '茉莉花茶', portion: '1杯', calories: 0 },
+          ],
+        },
+        {
+          breakfast: [
+            { name: '杂粮馒头', portion: '2个', calories: 180 },
+            { name: '豆浆', portion: '300ml', calories: 90 },
+            { name: '茶叶蛋', portion: '1个', calories: 70 },
+            { name: '小番茄', portion: '100g', calories: 30 },
+          ],
+          lunch: [
+            { name: '鸡腿肉沙拉', portion: '1份', calories: 350 },
+            { name: '糙米饭', portion: '1碗', calories: 180 },
+            { name: '玉米', portion: '半根', calories: 80 },
+          ],
+          dinner: [
+            { name: '番茄牛腩', portion: '200g', calories: 280 },
+            { name: '清炒菠菜', portion: '150g', calories: 50 },
+            { name: '紫薯', portion: '1个', calories: 100 },
+          ],
+          snack: [
+            { name: '橙子', portion: '1个', calories: 60 },
+            { name: '咖啡', portion: '1杯', calories: 5 },
+          ],
+        },
+        {
+          breakfast: [
+            { name: '酸奶', portion: '200g', calories: 120 },
+            { name: '坚果', portion: '30g', calories: 180 },
+            { name: '紫米糕', portion: '1块', calories: 160 },
+            { name: '香蕉', portion: '1根', calories: 90 },
+          ],
+          lunch: [
+            { name: '三文鱼藜麦饭', portion: '1碗', calories: 400 },
+            { name: '凉拌木耳', portion: '100g', calories: 50 },
+            { name: '味噌汤', portion: '1碗', calories: 60 },
+          ],
+          dinner: [
+            { name: '鸡胸肉炒时蔬', portion: '1盘', calories: 250 },
+            { name: '冬瓜汤', portion: '1碗', calories: 40 },
+            { name: '红薯', portion: '1个', calories: 100 },
+          ],
+          snack: [
+            { name: '葡萄', portion: '100g', calories: 60 },
+            { name: '玫瑰花茶', portion: '1杯', calories: 0 },
+          ],
+        },
+        {
+          breakfast: [
+            { name: '小米粥', portion: '1碗', calories: 150 },
+            { name: '红枣', portion: '5颗', calories: 50 },
+            { name: '水煮蛋', portion: '1个', calories: 70 },
+            { name: '牛奶', portion: '200ml', calories: 130 },
+          ],
+          lunch: [
+            { name: '瘦肉炒青椒', portion: '1盘', calories: 280 },
+            { name: '米饭', portion: '1碗', calories: 200 },
+            { name: '紫菜汤', portion: '1碗', calories: 40 },
+          ],
+          dinner: [
+            { name: '清蒸鸡腿', portion: '1个', calories: 220 },
+            { name: '蒜蓉菠菜', portion: '150g', calories: 50 },
+            { name: '杂粮饭', portion: '半碗', calories: 100 },
+          ],
+          snack: [
+            { name: '猕猴桃', portion: '1个', calories: 50 },
+            { name: '白茶', portion: '1杯', calories: 0 },
+          ],
+        },
+      ];
+
+      for (let dayIdx = 0; dayIdx < 5; dayIdx++) {
+        const date = weekDates[dayIdx];
+        const dayPlan = plan[dayIdx];
+        const meals = [
+          { type: 'breakfast', items: dayPlan.breakfast },
+          { type: 'lunch', items: dayPlan.lunch },
+          { type: 'dinner', items: dayPlan.dinner },
+          { type: 'snack', items: dayPlan.snack || [] },
+        ];
+        for (const m of meals) {
+          for (const meal of m.items) {
+            if (foodExists(date, m.type, meal.name)) continue;
+            await Store.addDietPlan({ name: meal.name, mealType: m.type, portion: meal.portion, calories: meal.calories, date });
+          }
+        }
+      }
+
+      selectedDate.value = weekDates[0];
+      alert('已生成本周一至周五的健康饮食计划！可点击日期切换查看，也可编辑或删除任意食物。');
+    }
+
+    return {
+      Utils, todayDay, selectedDay, selectedDate, showModal, showCopyModal, copyTargetDate, editing, form,
+      dayOrder, mealTypes, allFoods, totalCalories, dateLabel,
+      mealFoods, mealCalories, selectDayTab, goToday,
+      openAddFood, openEditFood, closeModal, saveFood, deleteFood, copyDay, generateWeeklyPlan, autoRotate,
+    };
+  }
+};
+  </script>
+  <script>
+    /**
+ * 数据与设置模块 — 导出导入 + 分类管理 + 主题切换 + 同步配置
+ */
+window.SettingsComponent = {
+  template: `
+    <div class="settings-module">
+      <div class="page-header">
+        <h1 class="page-title">数据与设置</h1>
+      </div>
+
+      <!-- 外观 -->
+      <div class="settings-section">
+        <div class="settings-section-title">外观</div>
+        <div class="settings-item">
+          <div>
+            <div class="settings-item-label">深色模式</div>
+            <div class="settings-item-desc">切换浅色/深色主题</div>
+          </div>
+          <div class="switch" :class="{ on: isDark }" @click="toggleTheme"></div>
+        </div>
+      </div>
+
+      <!-- 数据管理 -->
+      <div class="settings-section">
+        <div class="settings-section-title">数据管理</div>
+        <div class="settings-item">
+          <div>
+            <div class="settings-item-label">导出数据</div>
+            <div class="settings-item-desc">下载所有数据为 JSON 备份文件</div>
+          </div>
+          <button class="btn btn-secondary btn-sm" @click="exportData">导出</button>
+        </div>
+        <div class="settings-item">
+          <div>
+            <div class="settings-item-label">导入数据</div>
+            <div class="settings-item-desc">从 JSON 备份文件恢复数据</div>
+          </div>
+          <button class="btn btn-secondary btn-sm" @click="triggerImport">导入</button>
+          <input type="file" ref="fileInput" accept=".json" style="display:none" @change="importData" />
+        </div>
+        <div class="settings-item">
+          <div>
+            <div class="settings-item-label" style="color:var(--color-danger)">清空所有数据</div>
+            <div class="settings-item-desc">删除所有模块的全部数据，不可恢复</div>
+          </div>
+          <button class="btn btn-danger btn-sm" @click="clearData">清空</button>
+        </div>
+      </div>
+
+      <!-- 分类管理 -->
+      <div class="settings-section">
+        <div class="settings-section-title">分类管理</div>
+
+        <div v-for="mod in categoryModules" :key="mod.key" style="margin-bottom:var(--space-md)">
+          <div class="card">
+            <div class="card-header">
+              <span>{{ mod.label }}</span>
+              <button class="btn btn-ghost btn-sm" @click="openAddCategory(mod.key)">+ 添加分类</button>
+            </div>
+            <div class="card-body" style="padding:var(--space-sm)">
+              <div class="text-xs text-muted" style="padding:4px 8px;margin-bottom:4px">
+                预设分类（不可删除）：
+              </div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;padding:0 8px var(--space-sm)">
+                <span v-for="cat in Store.getPresetCategories(mod.key)" :key="cat.name"
+                  class="tag" :style="{ background: cat.color + '22', color: cat.color }">
+                  {{ cat.icon }} {{ cat.name }}
+                </span>
+              </div>
+              <div v-if="Store.getCategories(mod.key).length > 0">
+                <div class="text-xs text-muted" style="padding:4px 8px;margin-bottom:4px">
+                  自定义分类：
+                </div>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;padding:0 8px var(--space-sm)">
+                  <span v-for="cat in Store.getCategories(mod.key)" :key="cat.id"
+                    class="tag" :style="{ background: cat.color + '22', color: cat.color }">
+                    {{ cat.name }}
+                    <button style="margin-left:4px;background:none;border:none;cursor:pointer;color:inherit;font-size:14px;padding:0"
+                      @click="deleteCategory(cat)">✕</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 云同步 -->
+      <div class="settings-section">
+        <div class="settings-section-title">云同步</div>
+        <div class="settings-item">
+          <div>
+            <div class="settings-item-label">同步状态</div>
+            <div class="settings-item-desc">{{ syncDescription }}</div>
+          </div>
+        </div>
+        <div v-if="isFirebaseReady">
+          <div class="settings-item">
+            <div>
+              <div class="settings-item-label">同步码</div>
+              <div class="settings-item-desc">在其他设备输入此码即可同步数据</div>
+            </div>
+            <div style="display:flex;gap:var(--space-sm);align-items:center">
+              <code style="font-size:var(--font-lg);font-weight:700;letter-spacing:2px;color:var(--color-primary)">
+                {{ syncCode }}
+              </code>
+              <button class="btn btn-secondary btn-sm" @click="copySyncCode">复制</button>
+            </div>
+          </div>
+          <div class="settings-item">
+            <div>
+              <div class="settings-item-label">输入同步码</div>
+              <div class="settings-item-desc">从其他设备获取同步码，输入后切换到该数据</div>
+            </div>
+            <button class="btn btn-secondary btn-sm" @click="showSyncInput = !showSyncInput">
+              {{ showSyncInput ? '取消' : '输入' }}
+            </button>
+          </div>
+          <div v-if="showSyncInput" style="padding:var(--space-sm) 0">
+            <div class="form-row">
+              <input type="text" class="form-input" v-model="inputSyncCode" placeholder="输入6位同步码" maxlength="6" style="text-transform:uppercase;letter-spacing:2px" />
+              <button class="btn btn-primary" @click="applySyncCode" style="white-space:nowrap">切换数据</button>
+            </div>
+          </div>
+        </div>
+        <div v-else>
+          <div class="settings-item">
+            <div>
+              <div class="settings-item-label">启用云同步</div>
+              <div class="settings-item-desc">
+                需要配置 Firebase 项目。
+                打开 js/firebase-config.js 文件，按注释填写你的 Firebase 配置即可。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 关于 -->
+      <div class="settings-section">
+        <div class="settings-section-title">关于</div>
+        <div class="settings-item">
+          <div>
+            <div class="settings-item-label">为成为快乐富婆而努力奋斗 v1.0</div>
+            <div class="settings-item-desc">本地存储 + 云同步</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Category Modal -->
+      <div v-if="showCategoryModal" class="modal-overlay" @click.self="showCategoryModal = false">
+        <div class="modal">
+          <div class="modal-header">
+            <span class="modal-title">添加自定义分类</span>
+            <button class="modal-close" @click="showCategoryModal = false">✕</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">分类名称</label>
+              <input type="text" class="form-input" v-model="catForm.name" placeholder="如：宠物、社交" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">图标</label>
+              <input type="text" class="form-input" v-model="catForm.icon" placeholder="输入一个emoji，如 🐕" maxlength="2" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">颜色</label>
+              <div class="color-options">
+                <div v-for="c in Utils.categoryColors" :key="c"
+                  class="color-option" :class="{ selected: catForm.color === c }"
+                  :style="{ background: c }" @click="catForm.color = c">
+                </div>
+              </div>
+            </div>
+            <div v-if="catModule === 'accounting'" class="form-group">
+              <label class="form-label">类型</label>
+              <select class="form-select" v-model="catForm.type">
+                <option value="expense">支出</option>
+                <option value="income">收入</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" @click="showCategoryModal = false">取消</button>
+            <button class="btn btn-primary" @click="saveCategory">添加</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+
+  setup() {
+    const { ref, computed } = Vue;
+    const fileInput = ref(null);
+    const showCategoryModal = ref(false);
+    const catModule = ref('');
+    const catForm = ref({ name: '', icon: '📌', color: '#6366f1', type: 'expense' });
+    const showSyncInput = ref(false);
+    const inputSyncCode = ref('');
+
+    const categoryModules = [
+      { key: 'accounting', label: '记账分类' },
+      { key: 'calendar', label: '日历分类' },
+      { key: 'fitness', label: '健身分类' },
+      { key: 'diet', label: '饮食分类' },
+    ];
+
+    const isDark = computed(() => Store.state.theme === 'dark');
+
+    const isFirebaseReady = computed(() => DB.useCloud);
+
+    const syncCode = computed(() => getSyncCode() || '');
+
+    const syncDescription = computed(() => {
+      const status = Store.state.syncStatus;
+      if (status === 'local') return '仅本地存储，未启用云同步';
+      if (status === 'synced') return '已连接云端，数据实时同步';
+      if (status === 'offline') return '离线状态，恢复网络后自动同步';
+      return '未知';
+    });
+
+    function toggleTheme() {
+      Store.toggleTheme();
+    }
+
+    async function exportData() {
+      const data = await Store.exportData();
+      const json = JSON.stringify(data, null, 2);
+      Utils.downloadFile(`life_manager_backup_${Utils.today()}.json`, json);
+    }
+
+    function triggerImport() {
+      fileInput.value?.click();
+    }
+
+    async function importData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      try {
+        const text = await file.text();
+        const data = JSON.parse(text);
+        if (confirm('导入将覆盖当前所有数据，确定继续吗？')) {
+          await Store.importData(data);
+          alert('导入成功');
+        }
+      } catch (e) {
+        alert('文件格式错误，无法导入');
+      }
+      event.target.value = '';
+    }
+
+    async function clearData() {
+      if (confirm('确定清空所有数据吗？此操作不可恢复！')) {
+        if (confirm('再次确认：所有记账、日历、健身、饮食数据都将被删除！')) {
+          await Store.clearAllData();
+          alert('所有数据已清空');
+        }
+      }
+    }
+
+    function openAddCategory(moduleKey) {
+      catModule.value = moduleKey;
+      catForm.value = { name: '', icon: '📌', color: Utils.categoryColors[Math.floor(Math.random() * Utils.categoryColors.length)], type: 'expense' };
+      showCategoryModal.value = true;
+    }
+
+    async function saveCategory() {
+      if (!catForm.value.name.trim()) {
+        alert('请输入分类名称');
+        return;
+      }
+      await Store.addCategory({
+        module: catModule.value,
+        name: catForm.value.name.trim(),
+        icon: catForm.value.icon || '📌',
+        color: catForm.value.color,
+        type: catForm.value.type || '',
+      });
+      showCategoryModal.value = false;
+    }
+
+    async function deleteCategory(cat) {
+      if (confirm('确定删除这个自定义分类吗？')) {
+        await Store.deleteCategory(cat.id);
+      }
+    }
+
+    function copySyncCode() {
+      const code = getSyncCode();
+      if (code) {
+        navigator.clipboard.writeText(code);
+        alert('同步码已复制：' + code);
+      }
+    }
+
+    function applySyncCode() {
+      const code = inputSyncCode.value.trim().toUpperCase();
+      if (code.length !== 6) {
+        alert('请输入6位同步码');
+        return;
+      }
+      if (confirm('切换同步码后，当前本地数据将被替换为同步码对应的数据。确定继续吗？')) {
+        setSyncCode(code);
+        location.reload();
+      }
+    }
+
+    return {
+      Utils, Store, fileInput, showCategoryModal, catModule, catForm,
+      showSyncInput, inputSyncCode,
+      categoryModules, isDark, isFirebaseReady, syncCode, syncDescription,
+      toggleTheme, exportData, triggerImport, importData, clearData,
+      openAddCategory, saveCategory, deleteCategory,
+      copySyncCode, applySyncCode,
+    };
+  }
+};
+  </script>
+  <script>
+    /**
+ * 主应用入口 — Vue 应用创建、路由、导航壳
+ */
+(function() {
+const { createApp, computed, onMounted } = Vue;
+
+const navItems = [
+  { key: 'dashboard', label: '首页', icon: '🏠' },
+  { key: 'accounting', label: '记账', icon: '💰' },
+  { key: 'calendar', label: '日历', icon: '📅' },
+  { key: 'fitness', label: '健身', icon: '🏋️' },
+  { key: 'diet', label: '饮食', icon: '🍽️' },
+  { key: 'settings', label: '设置', icon: '⚙️' },
+];
+
+const App = {
+  template: `
+    <div class="app-shell">
+      <!-- Sidebar (desktop) -->
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <div class="logo-icon">🌸</div>
+          <span>为成为快乐<br>富婆而努力奋斗</span>
+        </div>
+        <nav class="sidebar-nav">
+          <button v-for="item in navItems" :key="item.key"
+            class="nav-item"
+            :class="{ active: Store.state.currentModule === item.key }"
+            @click="navigate(item.key)">
+            <span class="nav-icon">{{ item.icon }}</span>
+            {{ item.label }}
+          </button>
+        </nav>
+        <div class="sidebar-footer">
+          <div class="sync-status">
+            <span class="sync-dot" :class="syncDotClass"></span>
+            <span>{{ syncLabel }}</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <main class="main-content">
+        <div v-if="Store.state.loading" class="empty-state" style="padding:120px 0">
+          <div class="empty-icon" style="font-size:40px;animation:spin 1s linear infinite;display:inline-block">⏳</div>
+          <div class="empty-text mt-md">加载中...</div>
+        </div>
+        <component v-else :is="currentComponent"></component>
+      </main>
+
+      <!-- Bottom nav (mobile) -->
+      <nav class="bottom-nav">
+        <div class="bottom-nav-items">
+          <button v-for="item in navItems" :key="item.key"
+            class="nav-item"
+            :class="{ active: Store.state.currentModule === item.key }"
+            @click="navigate(item.key)">
+            <span class="nav-icon">{{ item.icon }}</span>
+            <span>{{ item.label }}</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  `,
+
+  setup() {
+    const componentMap = {
+      dashboard: 'DashboardComponent',
+      accounting: 'AccountingComponent',
+      calendar: 'CalendarComponent',
+      fitness: 'FitnessComponent',
+      diet: 'DietComponent',
+      settings: 'SettingsComponent',
+    };
+
+    const currentComponent = computed(() => componentMap[Store.state.currentModule] || 'DashboardComponent');
+
+    const syncDotClass = computed(() => {
+      const s = Store.state.syncStatus;
+      if (s === 'synced') return 'online';
+      if (s === 'offline') return 'offline';
+      return 'offline';
+    });
+
+    const syncLabel = computed(() => {
+      const s = Store.state.syncStatus;
+      if (s === 'synced') return '已同步';
+      if (s === 'offline') return '离线';
+      return '仅本地';
+    });
+
+    function navigate(key) {
+      Store.navigate(key);
+    }
+
+    function handleHashChange() {
+      const hash = location.hash.replace('#', '');
+      if (hash && navItems.some(n => n.key === hash)) {
+        Store.state.currentModule = hash;
+      }
+    }
+
+    onMounted(async () => {
+      window.addEventListener('hashchange', handleHashChange);
+      handleHashChange();
+      await Store.init();
+    });
+
+    return {
+      navItems, Store, currentComponent,
+      syncDotClass, syncLabel, navigate,
+    };
+  }
+};
+
+// Register components
+App.components = {
+  DashboardComponent: window.DashboardComponent,
+  AccountingComponent: window.AccountingComponent,
+  CalendarComponent: window.CalendarComponent,
+  FitnessComponent: window.FitnessComponent,
+  DietComponent: window.DietComponent,
+  SettingsComponent: window.SettingsComponent,
+};
+
+const app = createApp(App);
+app.mount('#app');
+})();
+  </script>
+</body>
+</html>
